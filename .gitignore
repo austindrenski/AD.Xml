@@ -7,6 +7,4 @@
 *.DotSettings
 *.nupkg
 /nuget.exe
-/AD.Xml.Tests/AD.Xml.Tests/bin/Debug
-/AD.Xml.Tests/AD.Xml.Tests/obj/Debug
-/AD.Xml.csproj.vspscc
+*.csproj.vspscc
