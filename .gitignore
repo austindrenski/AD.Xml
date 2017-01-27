@@ -1,0 +1,12 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/bin/Debug
+/obj/Debug
+*.DotSettings
+*.nupkg
+/nuget.exe
+/AD.Xml.Tests/AD.Xml.Tests/bin/Debug
+/AD.Xml.Tests/AD.Xml.Tests/obj/Debug
+/AD.Xml.csproj.vspscc
