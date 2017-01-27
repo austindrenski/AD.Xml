@@ -81,7 +81,7 @@ namespace AD.Xml
             IEnumerable<XElement> items = element.Elements(name).Where(predicate).ToArray();
             foreach (XElement item in items)
             {
-                item.Value = value(element);
+                item.Value = value(item);
             }
             return element;
         }
