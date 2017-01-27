@@ -22,7 +22,8 @@ namespace AD.Xml
         /// <returns>A reference to the existing <see cref="XElement"/>. This is returned for use with fluent syntax calls.</returns>
         public static XElement ChangeXValues(this XElement element, XName name, string value)
         {
-            foreach (XElement item in element.Elements(name))
+            IEnumerable<XElement> items = element.Elements(name).ToArray();
+            foreach (XElement item in items)
             {
                 item.Value = value;
             }
@@ -40,7 +41,8 @@ namespace AD.Xml
         /// <returns>A reference to the existing <see cref="XElement"/>. This is returned for use with fluent syntax calls.</returns>
         public static XElement ChangeXValues(this XElement element, XName name, Func<XElement, bool> predicate, string newValue)
         {
-            foreach (XElement item in element.Elements(name).Where(predicate))
+            IEnumerable<XElement> items = element.Elements(name).Where(predicate).ToArray();
+            foreach (XElement item in items)
             {
                 item.Value = newValue;
             }
@@ -57,7 +59,8 @@ namespace AD.Xml
         /// <returns>A reference to the existing <see cref="XElement"/>. This is returned for use with fluent syntax calls.</returns>
         public static XElement ChangeXValues(this XElement element, Func<XElement, bool> predicate, string value)
         {
-            foreach (XElement item in element.Elements().Where(predicate))
+            IEnumerable<XElement> items = element.Elements().Where(predicate).ToArray();
+            foreach (XElement item in items)
             {
                 item.Value = value;
             }
@@ -75,7 +78,8 @@ namespace AD.Xml
         /// <returns>A reference to the existing <see cref="XElement"/>. This is returned for use with fluent syntax calls.</returns>
         public static XElement ChangeXValues(this XElement element, XName name, Func<XElement, bool> predicate, Func<XElement, string> value)
         {
-            foreach (XElement item in element.Elements(name).Where(predicate))
+            IEnumerable<XElement> items = element.Elements(name).Where(predicate).ToArray();
+            foreach (XElement item in items)
             {
                 item.Value = value(element);
             }
