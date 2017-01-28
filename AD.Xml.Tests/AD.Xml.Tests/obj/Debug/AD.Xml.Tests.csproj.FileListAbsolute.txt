@@ -22,3 +22,4 @@ C:\Source\Repos\AD.Xml\AD.Xml.Tests\AD.Xml.Tests\bin\Debug\Microsoft.VisualStudi
 C:\Source\Repos\AD.Xml\AD.Xml.Tests\AD.Xml.Tests\bin\Debug\System.IO.Compression.dll
 C:\Source\Repos\AD.Xml\AD.Xml.Tests\AD.Xml.Tests\bin\Debug\AD.Xml.pdb
 C:\Source\Repos\AD.Xml\AD.Xml.Tests\AD.Xml.Tests\bin\Debug\JetBrains.Annotations.xml
+C:\Source\Repos\AD.Xml\AD.Xml.Tests\AD.Xml.Tests\bin\Debug\AD.Xml.Tests.dll.config

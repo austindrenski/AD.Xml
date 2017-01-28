@@ -1,0 +1,6 @@
+C:\Source\Repos\AD.Xml\bin\Release\AD.Xml.dll
+C:\Source\Repos\AD.Xml\bin\Release\AD.Xml.pdb
+C:\Source\Repos\AD.Xml\bin\Release\JetBrains.Annotations.dll
+C:\Source\Repos\AD.Xml\bin\Release\JetBrains.Annotations.xml
+C:\Source\Repos\AD.Xml\obj\Release\AD.Xml.dll
+C:\Source\Repos\AD.Xml\obj\Release\AD.Xml.pdb
