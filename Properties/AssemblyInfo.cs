@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("AD.Xml")]
-[assembly: AssemblyDescription("Extension library for XML manipulation and data management.")]
+[assembly: AssemblyDescription("C# extension library for XML manipulation and data management.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Austin Drenski")]
 [assembly: AssemblyProduct("AD.Xml")]
