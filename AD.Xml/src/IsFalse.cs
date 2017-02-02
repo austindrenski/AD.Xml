@@ -16,7 +16,8 @@ namespace AD.Xml
         /// <param name="element">The <see cref="XElement"/> against which the predicate is evaluated.</param>
         /// <param name="predicate">The condition with which to test the <see cref="XElement"/>.</param>
         /// <returns>True if the <see cref="XElement"/> fails to satisfy the predicate.</returns>
-        public static bool IsFalse(this XElement element, Func<XElement, bool> predicate)
+        [Pure]
+        public static bool IsFalse([NotNull] this XElement element, [NotNull] Func<XElement, bool> predicate)
         {
             return !predicate(element);
         }

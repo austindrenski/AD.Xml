@@ -3,6 +3,9 @@ using JetBrains.Annotations;
 
 namespace AD.Xml
 {
+    /// <summary>
+    /// Extension methods to navigate between ordered nodes.
+    /// </summary>
     [PublicAPI]
     public static class NextExtensions
     {
@@ -12,7 +15,8 @@ namespace AD.Xml
         /// <param name="element">The source element.</param>
         /// <returns>The next sibling <see cref="XElement"/>.</returns>
         [CanBeNull]
-        public static XElement Next(this XElement element)
+        [Pure]
+        public static XElement Next([NotNull] this XElement element)
         {
             return element.NextNode as XElement;
         }
@@ -24,7 +28,8 @@ namespace AD.Xml
         /// <param name="name">The name of the next element to find.</param>
         /// <returns>The next sibling <see cref="XElement"/>.</returns>
         [CanBeNull]
-        public static XElement Next(this XElement element, XName name)
+        [Pure]
+        public static XElement Next([NotNull] this XElement element, [NotNull] XName name)
         {
             XElement host = element;
             while (host.Parent != null)
