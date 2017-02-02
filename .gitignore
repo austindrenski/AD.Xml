@@ -8,3 +8,8 @@
 *.nupkg
 /nuget.exe
 *.csproj.vspscc
+*.ps1
+*.psd1
+*.psm1
+*.DotSettings.user
+*.suo
