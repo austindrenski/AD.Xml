@@ -30,6 +30,7 @@ namespace AD.Xml
         /// <param name="elements">The source nodes.</param>
         /// <param name="name">The name of the attributes to remove.</param>
         /// <returns>An <see cref="IEnumerable{XElement}"/> whose elements are the result of invoking the transform function on each element of source.</returns>
+        /// <exception cref="System.ArgumentException"/>
         [ItemNotNull]
         [NotNull]
         [Pure]
@@ -44,6 +45,9 @@ namespace AD.Xml
         /// <param name="elements">The source nodes.</param>
         /// <param name="name">The name of the attributes to remove.</param>
         /// <returns>A <see cref="ParallelQuery{XElement}"/> whose elements are the result of invoking the transform function on each element of source.</returns>
+        /// <exception cref="System.AggregateException"/>
+        /// <exception cref="System.ArgumentException"/>
+        /// <exception cref="System.OperationCanceledException"/>
         [ItemNotNull]
         [NotNull]
         [Pure]
