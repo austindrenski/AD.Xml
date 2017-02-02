@@ -5,10 +5,19 @@ using JetBrains.Annotations;
 
 namespace AD.Xml
 {
+    /// <summary>
+    /// Promotes elements to the level of their parent.
+    /// </summary>
     [PublicAPI]
     public static class PromoteExtensions
     {
-        public static void Promote(this IEnumerable<XElement> elements)
+        /// <summary>
+        /// Promotes the elements of the enumerable.
+        /// </summary>
+        /// <param name="elements">The source enumerable.</param>
+        /// <exception cref="System.ArgumentException"/>
+        /// <exception cref="System.InvalidOperationException"/>
+        public static void Promote([NotNull][ItemNotNull] this IEnumerable<XElement> elements)
         {
             XElement[] elementArray = elements as XElement[] ?? elements.ToArray();
             foreach (XElement item in elementArray)
