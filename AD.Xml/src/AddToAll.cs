@@ -20,7 +20,8 @@ namespace AD.Xml
         /// <param name="name">The name of the <see cref="XElement"/> to be added.</param>
         /// <param name="content">The content of the <see cref="XElement"/> to be added.</param>
         /// <returns>A reference to the existing <see cref="XElement"/>. This is returned for use with fluent syntax calls.</returns>
-        public static XElement AddToAll(this XElement element, XName name, params object[] content)
+        [NotNull]
+        public static XElement AddToAll([NotNull] this XElement element, [NotNull] XName name, params object[] content)
         {
             foreach (XElement item in element.Elements())
             {
@@ -39,7 +40,8 @@ namespace AD.Xml
         /// <param name="content">The content of the <see cref="XElement"/> to be added.</param>
         /// <returns>A reference to the existing <see cref="XElement"/>. This is returned for use with fluent syntax calls.</returns>
         /// <exception cref="ArgumentNullException"/>
-        public static XElement AddToAll(this XElement element, Func<XElement, bool> predicate, XName name, params object[] content)
+        [NotNull]
+        public static XElement AddToAll([NotNull] this XElement element, [NotNull] Func<XElement, bool> predicate, [NotNull] XName name, params object[] content)
         {
             foreach (XElement item in element.Elements().Where(predicate))
             {
@@ -55,9 +57,11 @@ namespace AD.Xml
         /// <param name="elements">The <see cref="IEnumerable{XElement}"/> to search for child elements.</param>
         /// <param name="name">The name of the <see cref="XElement"/> to be added.</param>
         /// <param name="content">The content of the <see cref="XElement"/> to be added.</param>
-        /// <returns>A reference to the existing <see cref="XElement"/>. This is returned for use with fluent syntax calls.</returns>
+        /// <returns>A reference to the existing <see cref="IEnumerable{XElement}"/>. This is returned for use with fluent syntax calls.</returns>
         /// <exception cref="ArgumentNullException"/>
-        public static IEnumerable<XElement> AddToAll(this IEnumerable<XElement> elements, XName name, params object[] content)
+        [ItemNotNull]
+        [NotNull]
+        public static IEnumerable<XElement> AddToAll([NotNull] this IEnumerable<XElement> elements, [NotNull] XName name, params object[] content)
         {
             return elements.Select(x =>
             {
@@ -74,9 +78,11 @@ namespace AD.Xml
         /// <param name="predicate">If satisfied, the <see cref="XElement"/> is added.</param>
         /// <param name="name">The name of the <see cref="XElement"/> to be added.</param>
         /// <param name="content">The content of the <see cref="XElement"/> to be added.</param>
-        /// <returns>A reference to the existing <see cref="XElement"/>. This is returned for use with fluent syntax calls.</returns>
+        /// <returns>A reference to the existing <see cref="IEnumerable{XElement}"/>. This is returned for use with fluent syntax calls.</returns>
         /// <exception cref="ArgumentNullException"/>
-        public static IEnumerable<XElement> AddToAll(this IEnumerable<XElement> elements, Func<XElement, bool> predicate, XName name, params object[] content)
+        [ItemNotNull]
+        [NotNull]
+        public static IEnumerable<XElement> AddToAll([NotNull] this IEnumerable<XElement> elements, [NotNull] Func<XElement, bool> predicate, [NotNull] XName name, params object[] content)
         {
             return elements.Where(predicate).Select(x =>
             {
@@ -96,7 +102,9 @@ namespace AD.Xml
         /// <exception cref="AggregateException"/>
         /// <exception cref="ArgumentNullException"/>
         /// <exception cref="OperationCanceledException"/>
-        public static ParallelQuery<XElement> AddToAll(this ParallelQuery<XElement> elements, XName name, params object[] content)
+        [ItemNotNull]
+        [NotNull]
+        public static ParallelQuery<XElement> AddToAll([NotNull] this ParallelQuery<XElement> elements, [NotNull] XName name, params object[] content)
         {
             return elements.Select(x =>
             {
@@ -117,7 +125,9 @@ namespace AD.Xml
         /// <exception cref="AggregateException"/>
         /// <exception cref="ArgumentNullException"/>
         /// <exception cref="OperationCanceledException"/>   
-        public static ParallelQuery<XElement> AddToAll(this ParallelQuery<XElement> elements, Func<XElement, bool> predicate, XName name, params object[] content)
+        [ItemNotNull]
+        [NotNull]
+        public static ParallelQuery<XElement> AddToAll([NotNull] this ParallelQuery<XElement> elements, [NotNull] Func<XElement, bool> predicate, [NotNull] XName name, params object[] content)
         {
             return elements.Select(x =>
             {
