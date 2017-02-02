@@ -18,6 +18,8 @@ namespace AD.Xml
         /// <param name="name">The name of the attribute to affect.</param>
         /// <param name="value">The value to which the attributes are set.</param>
         /// <returns>A reference to the existing <see cref="XElement"/>. This is returned for use with fluent syntax calls.</returns>
+        /// <exception cref="System.ArgumentException"/>
+        /// <exception cref="System.ArgumentNullException"/>
         [NotNull]
         public static XElement ChangeXAttributeValues([NotNull] this XElement element, [NotNull] XName name, string value)
         {
@@ -35,6 +37,8 @@ namespace AD.Xml
         /// <param name="name">The name of the attribute to affect.</param>
         /// <param name="value">The value to which the attributes are set.</param>
         /// <returns>An <see cref="IEnumerable{XElement}"/> whose elements are the result of invoking the transform function on each element of source.</returns>
+        /// <exception cref="System.ArgumentException"/>
+        /// <exception cref="System.ArgumentNullException"/>
         [ItemNotNull]
         [NotNull]
         [Pure]
@@ -50,6 +54,9 @@ namespace AD.Xml
         /// <param name="name">The name of the attribute to affect.</param>
         /// <param name="value">The value to which the attributes are set.</param>
         /// <returns>A <see cref="ParallelQuery{XElement}"/> whose elements are the result of invoking the transform function on each element of source.</returns>
+        /// <exception cref="System.AggregateException"/>
+        /// <exception cref="System.ArgumentException"/>
+        /// <exception cref="System.ArgumentNullException"/>
         [ItemNotNull]
         [NotNull]
         [Pure]
@@ -66,6 +73,8 @@ namespace AD.Xml
         /// <param name="oldValue">The value of the attribute to affect.</param>
         /// <param name="newValue">The value to which the attributes are set.</param>
         /// <returns>A reference to the existing <see cref="XElement"/>. This is returned for use with fluent syntax calls.</returns>
+        /// <exception cref="System.ArgumentException"/>
+        /// <exception cref="System.ArgumentNullException"/>
         [NotNull]
         public static XElement ChangeXAttributeValues([NotNull] this XElement element, [NotNull] XName name, string oldValue, string newValue)
         {
@@ -84,6 +93,8 @@ namespace AD.Xml
         /// <param name="oldValue">The value of the attribute to affect.</param>
         /// <param name="newValue">The value to which the attributes are set.</param>
         /// <returns>An <see cref="IEnumerable{XElement}"/> whose elements are the result of invoking the transform function on each element of source.</returns>
+        /// <exception cref="System.ArgumentException"/>
+        /// <exception cref="System.ArgumentNullException"/>
         [NotNull]
         [Pure]
         public static IEnumerable<XElement> ChangeXAttributeValues([NotNull][ItemNotNull] this IEnumerable<XElement> elements, [NotNull] XName name, string oldValue, string newValue)
@@ -99,6 +110,9 @@ namespace AD.Xml
         /// <param name="oldValue">The value of the attribute to affect.</param>
         /// <param name="newValue">The value to which the attributes are set.</param>
         /// <returns>A <see cref="ParallelQuery{XElement}"/> whose elements are the result of invoking the transform function on each element of source.</returns>
+        /// <exception cref="System.AggregateException"/>
+        /// <exception cref="System.ArgumentException"/>
+        /// <exception cref="System.ArgumentNullException"/>
         [NotNull]
         [Pure]
         public static ParallelQuery<XElement> ChangeXAttributeValues([NotNull][ItemNotNull] this ParallelQuery<XElement> elements, [NotNull] XName name, string oldValue, string newValue)
@@ -115,6 +129,8 @@ namespace AD.Xml
         /// <param name="oldValue">The value of the attribute to affect.</param>
         /// <param name="newValue">The value to which the attributes are set.</param>
         /// <returns>A reference to the existing <see cref="XElement"/>. This is returned for use with fluent syntax calls.</returns>
+        /// <exception cref="System.ArgumentException"/>
+        /// <exception cref="System.ArgumentNullException"/>
         [NotNull]
         public static XElement ChangeXAttributeValues([NotNull] this XElement element, [NotNull] XName descendantName, [NotNull]  XName attributeName, string oldValue, string newValue)
         {
@@ -134,6 +150,8 @@ namespace AD.Xml
         /// <param name="oldValue">The value of the attribute to affect.</param>
         /// <param name="newValue">The value to which the attributes are set.</param>
         /// <returns>An <see cref="IEnumerable{XElement}"/> whose elements are the result of invoking the transform function on each element of source.</returns>
+        /// <exception cref="System.ArgumentException"/>
+        /// <exception cref="System.ArgumentNullException"/>
         [ItemNotNull]
         [NotNull]
         [Pure]
@@ -151,6 +169,9 @@ namespace AD.Xml
         /// <param name="oldValue">The value of the attribute to affect.</param>
         /// <param name="newValue">The value to which the attributes are set.</param>
         /// <returns>A <see cref="ParallelQuery{XElement}"/> whose elements are the result of invoking the transform function on each element of source.</returns>
+        /// <exception cref="System.AggregateException"/>
+        /// <exception cref="System.ArgumentException"/>
+        /// <exception cref="System.ArgumentNullException"/>
         [ItemNotNull]
         [NotNull]
         [Pure]
