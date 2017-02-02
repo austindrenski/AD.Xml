@@ -11,3 +11,5 @@ C:\Users\austin.drenski\Source\Repos\AD.Xml\bin\Release\JetBrains.Annotations.xm
 C:\Users\austin.drenski\Source\Repos\AD.Xml\obj\Release\AD.Xml.csprojResolveAssemblyReference.cache
 C:\Users\austin.drenski\Source\Repos\AD.Xml\obj\Release\AD.Xml.dll
 C:\Users\austin.drenski\Source\Repos\AD.Xml\obj\Release\AD.Xml.pdb
+C:\Source\Repos\AD.Xml\bin\Release\AD.Xml.XML
+C:\Source\Repos\AD.Xml\obj\Release\AD.Xml.csprojResolveAssemblyReference.cache
