@@ -48,6 +48,34 @@ namespace AD.Xml
         }
 
         /// <summary>
+        /// Returns a single XElement named root whose content are the converted elements of the enumerable collection.
+        /// </summary>
+        /// <param name="enumerable">The enumerable collection that will become the elements of the root XElement.</param>
+        /// <returns>An XElement named root that contains the enumerable as elements.</returns>
+        public static XElement ToXElement(this IQueryable enumerable)
+        {
+            IEnumerable<XElement> content;
+            if (enumerable is IQueryable<XElement>)
+            {
+                content = enumerable.Cast<XElement>()
+                                    .RemoveEmptyProperties();
+            }
+            else if (enumerable is IQueryable<XStreamingElement>)
+            {
+                content = enumerable.Cast<XStreamingElement>()
+                                    .Select(x => x.ToXElement())
+                                    .RemoveEmptyProperties();
+            }
+            else
+            {
+                content = enumerable.Cast<object>()
+                                    .Select(x => x.ToXElement())
+                                    .RemoveEmptyProperties();
+            }
+            return new XElement("root", content);
+        }
+
+        /// <summary>
         /// Encapsulates the element in an XElement named record.
         /// </summary>
         /// <param name="element">The object to be encapsulated.</param>

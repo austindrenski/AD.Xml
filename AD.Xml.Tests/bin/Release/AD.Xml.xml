@@ -855,6 +855,13 @@
             <param name="enumerable">The enumerable collection that will become the elements of the root XElement.</param>
             <returns>An XElement named root that contains the enumerable as elements.</returns>
         </member>
+        <member name="M:AD.Xml.ToXElementExensions.ToXElement(System.Linq.IQueryable)">
+            <summary>
+            Returns a single XElement named root whose content are the converted elements of the enumerable collection.
+            </summary>
+            <param name="enumerable">The enumerable collection that will become the elements of the root XElement.</param>
+            <returns>An XElement named root that contains the enumerable as elements.</returns>
+        </member>
         <member name="M:AD.Xml.ToXElementExensions.ToXElement``1(``0)">
             <summary>
             Encapsulates the element in an XElement named record.
