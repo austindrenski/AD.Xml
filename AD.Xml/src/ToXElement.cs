@@ -108,7 +108,7 @@ namespace AD.Xml
                 item.SetAttributeValue(
                     "type",
                     propertyInfo.PropertyType.IsGenericType
-                        ? propertyInfo.PropertyType.GenericTypeArguments.FirstOrDefault()?.FullName ?? propertyInfo.PropertyType.Name
+                        ? propertyInfo.PropertyType.Name + propertyInfo.PropertyType.GenericTypeArguments.FirstOrDefault()?.FullName
                         : propertyInfo.PropertyType.Name);
 
                 if (SpecialFields.Contains(propertyInfo.Name.ToUpper()))
