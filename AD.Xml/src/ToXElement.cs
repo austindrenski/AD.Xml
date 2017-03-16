@@ -100,11 +100,17 @@ namespace AD.Xml
                                   : new Type[] { type }.Concat(type.GetInterfaces())
                                                        .SelectMany(i => i.GetProperties())
                                                        .ToArray();
-        XElement record = new XElement("record");
+            XElement record = new XElement("record");
             foreach (PropertyInfo propertyInfo in properties)
             {
                 XElement item = new XElement(propertyInfo.Name, propertyInfo.GetValue(element));
-                item.SetAttributeValue("type", propertyInfo.PropertyType.Name);
+
+                item.SetAttributeValue(
+                    "type",
+                    propertyInfo.PropertyType.IsGenericType
+                        ? propertyInfo.PropertyType.GenericTypeArguments.FirstOrDefault()?.FullName ?? propertyInfo.PropertyType.Name
+                        : propertyInfo.PropertyType.Name);
+
                 if (SpecialFields.Contains(propertyInfo.Name.ToUpper()))
                 {
                     item.SetAttributeValue("type", propertyInfo.Name.ToUpper());
