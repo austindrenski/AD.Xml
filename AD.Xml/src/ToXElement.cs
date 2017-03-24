@@ -15,11 +15,6 @@ namespace AD.Xml
     public static class ToXElementExensions
     {
         /// <summary>
-        /// Fields that should be flagged in XDocuments consumed by Getdata applications.
-        /// </summary>
-        internal static readonly IList<string> SpecialFields = new string[] { "HTS10", "HTS8", "HTS6", "HTS4", "HTS2", "HS6", "HS4", "HS2", "GTAP", "NAICS", "Year" };
-
-        /// <summary>
         /// Returns a single XElement named root whose content are the converted elements of the enumerable collection.
         /// </summary>
         /// <param name="enumerable">The enumerable collection that will become the elements of the root XElement.</param>
@@ -29,20 +24,17 @@ namespace AD.Xml
             IEnumerable<XElement> content;
             if (enumerable is IEnumerable<XElement>)
             {
-                content = enumerable.Cast<XElement>()
-                                    .RemoveEmptyProperties();
+                content = enumerable.Cast<XElement>();
             }
             else if (enumerable is IEnumerable<XStreamingElement>)
             {
                 content = enumerable.Cast<XStreamingElement>()
-                                    .Select(x => x.ToXElement())
-                                    .RemoveEmptyProperties();
+                                    .Select(x => x.ToXElement());
             }
             else
             {
                 content = enumerable.Cast<object>()
-                                    .Select(x => x.ToXElement())
-                                    .RemoveEmptyProperties();
+                                    .Select(x => x.ToXElement());
             }
             return new XElement("root", content); 
         }
@@ -57,20 +49,17 @@ namespace AD.Xml
             IEnumerable<XElement> content;
             if (enumerable is IQueryable<XElement>)
             {
-                content = enumerable.Cast<XElement>()
-                                    .RemoveEmptyProperties();
+                content = enumerable.Cast<XElement>();
             }
             else if (enumerable is IQueryable<XStreamingElement>)
             {
                 content = enumerable.Cast<XStreamingElement>()
-                                    .Select(x => x.ToXElement())
-                                    .RemoveEmptyProperties();
+                                    .Select(x => x.ToXElement());
             }
             else
             {
                 content = enumerable.Cast<object>()
-                                    .Select(x => x.ToXElement())
-                                    .RemoveEmptyProperties();
+                                    .Select(x => x.ToXElement());
             }
             return new XElement("root", content);
         }
@@ -90,14 +79,13 @@ namespace AD.Xml
             {
                 return XElement.Parse(element.ToString());
             }
-            if (element.GetType().IsPrimitive)
+            if (typeof(T).IsPrimitive)
             {
                 return new XElement("record", element);
             }
-            Type type = element.GetType();
             IEnumerable<PropertyInfo> properties = 
-                !type.IsInterface ? type.GetProperties()
-                                  : new Type[] { type }.Concat(type.GetInterfaces())
+                !typeof(T).IsInterface ? typeof(T).GetProperties()
+                                  : new Type[] { typeof(T) }.Concat(typeof(T).GetInterfaces())
                                                        .SelectMany(i => i.GetProperties())
                                                        .ToArray();
             XElement record = new XElement("record");
@@ -111,10 +99,6 @@ namespace AD.Xml
                         ? propertyInfo.PropertyType.Name + propertyInfo.PropertyType.GenericTypeArguments.FirstOrDefault()?.FullName
                         : propertyInfo.PropertyType.Name);
 
-                if (SpecialFields.Contains(propertyInfo.Name.ToUpper()))
-                {
-                    item.SetAttributeValue("type", propertyInfo.Name.ToUpper());
-                }
                 record.Add(item);
             }
             return record;
@@ -125,10 +109,10 @@ namespace AD.Xml
         /// </summary>
         /// <param name="elements">The enumerable collection of parent elements.</param>
         /// <returns>The enumerable collection without child elements that were null or zero in every parent element.</returns>
-        private static IEnumerable<XElement> RemoveEmptyProperties(this IEnumerable<XElement> elements)
+        public static IEnumerable<XElement> RemoveEmptyProperties(this IEnumerable<XElement> elements)
         {
             XElement[] elementsArray = elements as XElement[] ?? elements.ToArray();
-            IList<XName> names = elementsArray.FirstOrDefault()?.Elements().Select(x => x.Name).ToArray() ?? new XName[0];
+            IEnumerable<XName> names = elementsArray.FirstOrDefault()?.Elements().Select(x => x.Name).ToArray() ?? new XName[0];
             foreach (XName name in names)
             {
                 if (elementsArray.Descendants(name).All(x => x.Value == "0"))

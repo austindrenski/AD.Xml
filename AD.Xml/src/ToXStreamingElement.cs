@@ -79,10 +79,6 @@ namespace AD.Xml
                 {
                     XElement item = new XElement(x.Name, x.GetValue(element));
                     item.SetAttributeValue("type", x.PropertyType.Name);
-                    if (ToXElementExensions.SpecialFields.Contains(x.Name.ToUpper()))
-                    {
-                        item.SetAttributeValue("type", x.Name.ToUpper());
-                    }
                     return item;
                 }));
             return record;
