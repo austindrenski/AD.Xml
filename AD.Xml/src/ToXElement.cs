@@ -79,13 +79,14 @@ namespace AD.Xml
             {
                 return XElement.Parse(element.ToString());
             }
-            if (typeof(T).IsPrimitive)
+            if (element.GetType().IsPrimitive)
             {
                 return new XElement("record", element);
             }
+            Type type = element.GetType();
             IEnumerable<PropertyInfo> properties = 
-                !typeof(T).IsInterface ? typeof(T).GetProperties()
-                                  : new Type[] { typeof(T) }.Concat(typeof(T).GetInterfaces())
+                !type.IsInterface ? type.GetProperties()
+                                  : new Type[] { type }.Concat(type.GetInterfaces())
                                                        .SelectMany(i => i.GetProperties())
                                                        .ToArray();
             XElement record = new XElement("record");
