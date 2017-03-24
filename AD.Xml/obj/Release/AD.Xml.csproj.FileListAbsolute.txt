@@ -26,3 +26,6 @@ C:\Source\Repos\AD.Xml\AD.Xml\bin\Release\JetBrains.Annotations.xml
 C:\Source\Repos\AD.Xml\AD.Xml\obj\Release\AD.Xml.csprojResolveAssemblyReference.cache
 C:\Source\Repos\AD.Xml\AD.Xml\obj\Release\AD.Xml.dll
 C:\Source\Repos\AD.Xml\AD.Xml\obj\Release\AD.Xml.pdb
+C:\Users\austin.drenski\Source\Repos\AD.Xml\AD.Xml\bin\Release\System.Collections.Immutable.dll
+C:\Users\austin.drenski\Source\Repos\AD.Xml\AD.Xml\bin\Release\System.Collections.Immutable.xml
+C:\Users\austin.drenski\Source\Repos\AD.Xml\AD.Xml\obj\Release\AD.Xml.csprojResolveAssemblyReference.cache
