@@ -895,6 +895,15 @@
             <param name="elements">The enumerable collection to convert.</param>
             <returns>The indented XML string form of the enumerable collection.</returns>
         </member>
+        <member name="M:AD.Xml.ToXmlStringExtensions.ToXmlString(System.Collections.Immutable.IImmutableList{System.Object},System.String,System.String)">
+            <summary>
+            Returns the XML string representation of an immutable array.
+            </summary>
+            <param name="records">The immutable collection to convert.</param>
+            <param name="indent">The indent string applied during serialization.</param>
+            <param name="line">The delimiting string applied between nodes.</param>
+            <returns>The indented XML string form of the immutable collection.</returns>
+        </member>
         <member name="T:AD.Xml.ToXNameExtensions">
             <summary>
             Extension methods to find a string name in an existing XDocument.

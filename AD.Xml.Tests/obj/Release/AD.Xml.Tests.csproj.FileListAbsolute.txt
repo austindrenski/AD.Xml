@@ -13,3 +13,7 @@ C:\Users\austin.drenski\Source\Repos\AD.Xml\AD.Xml.Tests\bin\Release\JetBrains.A
 C:\Users\austin.drenski\Source\Repos\AD.Xml\AD.Xml.Tests\obj\Release\AD.Xml.Tests.csprojResolveAssemblyReference.cache
 C:\Users\austin.drenski\Source\Repos\AD.Xml\AD.Xml.Tests\obj\Release\AD.Xml.Tests.dll
 C:\Users\austin.drenski\Source\Repos\AD.Xml\AD.Xml.Tests\obj\Release\AD.Xml.Tests.pdb
+C:\Users\austin.drenski\Source\Repos\AD.Xml\AD.Xml.Tests\bin\Release\AD.Collections.dll
+C:\Users\austin.drenski\Source\Repos\AD.Xml\AD.Xml.Tests\bin\Release\System.Collections.Immutable.dll
+C:\Users\austin.drenski\Source\Repos\AD.Xml\AD.Xml.Tests\bin\Release\AD.Collections.xml
+C:\Users\austin.drenski\Source\Repos\AD.Xml\AD.Xml.Tests\bin\Release\System.Collections.Immutable.xml
