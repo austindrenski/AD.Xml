@@ -36,8 +36,8 @@ namespace AD.Xml
             XElement clone = element.Clone();
 
             clone.Descendants(name)
-                 .Where(x => removeAttributes && !x.HasAttributes)
-                 .Where(x => removeElements && !x.HasElements)
+                 .Where(x => !removeAttributes || !x.HasAttributes)
+                 .Where(x => !removeElements || !x.HasElements)
                  .Where(x => string.IsNullOrEmpty(x.Value))
                  .Remove();
 
