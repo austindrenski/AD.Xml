@@ -29,7 +29,8 @@ namespace AD.Xml
                 new XElement(
                     source.Name,
                     source.Attributes().Select(x => x.Clone()),
-                    source.Elements().Select(x => x.Clone()));
+                    source.Elements().Select(x => x.Clone()),
+                    source.Value);
         }
 
         /// <summary>
