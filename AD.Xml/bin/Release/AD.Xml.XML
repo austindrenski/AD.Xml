@@ -422,6 +422,12 @@
             Extension methods to clone <see cref="T:System.Xml.Linq.XElement"/> and <see cref="T:System.Xml.Linq.XAttribute"/> objects.
             </summary>
         </member>
+        <member name="M:AD.Xml.CloneExtensions.CloneNode(System.Xml.Linq.XNode)">
+            <summary>
+            Returns a deep copy of the source element.
+            </summary>
+            <exception cref="T:System.ArgumentNullException"/>
+        </member>
         <member name="M:AD.Xml.CloneExtensions.Clone(System.Xml.Linq.XElement)">
             <summary>
             Returns a deep copy of the source element.
@@ -431,18 +437,6 @@
         <member name="M:AD.Xml.CloneExtensions.Clone(System.Collections.Generic.IEnumerable{System.Xml.Linq.XElement})">
             <summary>
             Returns a deep copy of the source element.
-            </summary>
-            <exception cref="T:System.ArgumentNullException"/>
-        </member>
-        <member name="M:AD.Xml.CloneExtensions.Clone(System.Xml.Linq.XAttribute)">
-            <summary>
-            Returns a deep copy of the source attribute.
-            </summary>
-            <exception cref="T:System.ArgumentNullException"/>
-        </member>
-        <member name="M:AD.Xml.CloneExtensions.Clone(System.Collections.Generic.IEnumerable{System.Xml.Linq.XAttribute})">
-            <summary>
-            Returns a deep copy of the source attritube.
             </summary>
             <exception cref="T:System.ArgumentNullException"/>
         </member>

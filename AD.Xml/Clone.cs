@@ -18,6 +18,30 @@ namespace AD.Xml
         /// <exception cref="ArgumentNullException"/>
         [Pure]
         [NotNull]
+        public static XNode CloneNode([NotNull] this XNode source)
+        {
+            if (source is null)
+            {
+                throw new ArgumentNullException(nameof(source));
+            }
+
+            XElement element = source as XElement;
+
+            return
+                element is null
+                    ? source
+                    : new XElement(
+                        element.Name,
+                        element.Attributes(),
+                        element.Nodes().Select(x => x.CloneNode()));
+        }
+
+        /// <summary>
+        /// Returns a deep copy of the source element.
+        /// </summary>
+        /// <exception cref="ArgumentNullException"/>
+        [Pure]
+        [NotNull]
         public static XElement Clone([NotNull] this XElement source)
         {
             if (source is null)
@@ -28,9 +52,8 @@ namespace AD.Xml
             return
                 new XElement(
                     source.Name,
-                    source.Attributes().Select(x => x.Clone()),
-                    source.Elements().Select(x => x.Clone()),
-                    source.Value);
+                    source.Attributes(),
+                    source.Nodes().Select(x => x.CloneNode()));
         }
 
         /// <summary>
@@ -48,42 +71,6 @@ namespace AD.Xml
             }
 
             return source.Select(x => x.Clone());
-        }
-
-        /// <summary>
-        /// Returns a deep copy of the source attribute.
-        /// </summary>
-        /// <exception cref="ArgumentNullException"/>
-        [Pure]
-        [NotNull]
-        public static XAttribute Clone([NotNull] this XAttribute source)
-        {
-            if (source is null)
-            {
-                throw new ArgumentNullException(nameof(source));
-            }
-
-            return
-                new XAttribute(
-                    source.Name,
-                    source.Value);
-        }
-
-        /// <summary>
-        /// Returns a deep copy of the source attritube.
-        /// </summary>
-        /// <exception cref="ArgumentNullException"/>
-        [Pure]
-        [NotNull]
-        [ItemNotNull]
-        public static IEnumerable<XAttribute> Clone([NotNull][ItemNotNull] this IEnumerable<XAttribute> source)
-        {
-            if (source is null)
-            {
-                throw new ArgumentNullException(nameof(source));
-            }
-
-            return source.Select(x => x.Clone());
-        }
+        } 
     }
 }
