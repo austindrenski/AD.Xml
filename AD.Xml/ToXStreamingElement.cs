@@ -63,17 +63,18 @@ namespace AD.Xml
                 return xElement.HasElements ? new XStreamingElement(xElement.Name, xElement.Elements()) 
                                             : new XStreamingElement(xElement.Name, xElement.Value);
             }
-            Type elementType = element.GetType();
+            TypeInfo elementType = element.GetType().GetTypeInfo();
             if (elementType.IsPrimitive)
             {
                 return new XStreamingElement("record", element);
             }
-            Type type = element.GetType();
+            TypeInfo type = element.GetType().GetTypeInfo();
             IEnumerable<PropertyInfo> properties =
-                !type.IsInterface ? type.GetProperties()
-                                  : new Type[] { type }.Concat(type.GetInterfaces())
-                                                       .SelectMany(i => i.GetProperties())
-                                                       .ToArray();
+                !type.IsInterface
+                    ? type.GetProperties()
+                    : new TypeInfo[] { type }.Concat(type.GetInterfaces().Select(x => x.GetTypeInfo()))
+                                             .SelectMany(i => i.GetProperties())
+                                             .ToArray();
             XStreamingElement record =
                 new XStreamingElement("record", properties.Select(x =>
                 {

@@ -35,7 +35,15 @@ namespace AD.Xml
             {
                 foreach (XElement element in document.Root?.Elements().Elements() ?? new XElement[0])
                 {
-                    element.Value = string.Join(null, element.Value.Where(XmlConvert.IsXmlChar));
+                    // XmlConvert.IsXmlChar should return in .NET Standard 2.0
+                    try
+                    {
+                        element.Value = string.Join(null, XmlConvert.VerifyXmlChars((string) element));
+                    }
+                    catch
+                    {
+                        element.Value = "XmlConvert.VerifyXmlChars could not verify this value.";
+                    }
                 }
                 return document.Declaration + Environment.NewLine + document;
             }
@@ -65,6 +73,7 @@ namespace AD.Xml
             PropertyInfo[] properties =
                 records.FirstOrDefault()?
                        .GetType()
+                       .GetTypeInfo()
                        .GetProperties()
                 ?? new PropertyInfo[0];
 

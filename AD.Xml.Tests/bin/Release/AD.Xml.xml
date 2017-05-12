@@ -1036,36 +1036,6 @@
             <param name="element">The object to be encapsulated.</param>
             <returns>An <see cref="T:System.Xml.Linq.XStreamingElement"/> named record that contains the element.</returns>
         </member>
-        <member name="T:AD.Xml.XmlSchemaExtensions">
-            <summary>
-            Extension methods to work with XML schemas.
-            </summary>
-        </member>
-        <member name="M:AD.Xml.XmlSchemaExtensions.XmlSchema(System.Xml.Linq.XDocument,System.IO.StreamWriter)">
-            <summary>
-            Creates an XML schema based on the first element of the root of the XDocument.
-            </summary>
-            <param name="document">The XDocument used to create the schema.</param>
-            <param name="writer">The stream to which error information is written.</param>
-            <returns>An XML schema representing the first element of the root of the XDocument.</returns>
-        </member>
-        <member name="M:AD.Xml.XmlSchemaExtensions.Validate(System.Xml.Linq.XDocument,System.Xml.Schema.XmlSchema)">
-            <summary>
-            Returns true if the XDocument is valid according to the schema.
-            </summary>
-            <param name="document">The document to validate.</param>
-            <param name="schema">The schema for validation.</param>
-            <returns>True if the document is valid according to the schema.</returns>
-        </member>
-        <member name="M:AD.Xml.XmlSchemaExtensions.Validate(System.Xml.Linq.XDocument,System.Xml.Schema.XmlSchema,System.IO.StreamWriter)">
-            <summary>
-            Returns true if the XDocument is valid according to the schema and writes error information to a stream.
-            </summary>
-            <param name="document">The document to validate.</param>
-            <param name="schema">The schema for validation.</param>
-            <param name="writer">The stream to which error information is written.</param>
-            <returns>True if the document is valid according to the schema.</returns>
-        </member>
         <member name="T:AD.Xml.XNamespaces">
             <summary>
             Common XML namespaces.

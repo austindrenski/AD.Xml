@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -79,16 +78,17 @@ namespace AD.Xml
             {
                 return XElement.Parse(element.ToString());
             }
-            if (element.GetType().IsPrimitive)
+            if (element.GetType().GetTypeInfo().IsPrimitive)
             {
                 return new XElement("record", element);
             }
-            Type type = element.GetType();
-            IEnumerable<PropertyInfo> properties = 
-                !type.IsInterface ? type.GetProperties()
-                                  : new Type[] { type }.Concat(type.GetInterfaces())
-                                                       .SelectMany(i => i.GetProperties())
-                                                       .ToArray();
+            TypeInfo type = element.GetType().GetTypeInfo();
+            IEnumerable<PropertyInfo> properties =
+                !type.IsInterface
+                    ? type.GetProperties()
+                    : new TypeInfo[] { type }.Concat(type.GetInterfaces().Select(x => x.GetTypeInfo()))
+                                             .SelectMany(i => i.GetProperties())
+                                             .ToArray();
             XElement record = new XElement("record");
             foreach (PropertyInfo propertyInfo in properties)
             {
@@ -96,7 +96,7 @@ namespace AD.Xml
 
                 item.SetAttributeValue(
                     "type",
-                    propertyInfo.PropertyType.IsGenericType
+                    propertyInfo.PropertyType.GetTypeInfo().IsGenericType
                         ? propertyInfo.PropertyType.Name + propertyInfo.PropertyType.GenericTypeArguments.FirstOrDefault()?.FullName
                         : propertyInfo.PropertyType.Name);
 

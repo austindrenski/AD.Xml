@@ -21,8 +21,8 @@ namespace AD.Xml.Tests
             };
 
             // Act
-            elements.AsParallel().ChangeXNames(x => x.Value == "3", "AA");
-            string test = string.Join("|", elements.Select(x => x.Name));
+            ParallelQuery<XElement> t = elements.AsParallel().ChangeXNames(x => x.Value == "3", "AA");
+            string test = string.Join("|", t.Select(x => x.Name));
 
             // Assert
             Assert.IsTrue(elements.Count(x => x.Name == "AA") == 1);
@@ -42,8 +42,8 @@ namespace AD.Xml.Tests
             };
 
             // Act
-            elements.AsParallel().ChangeXNames("A", "AA");
-            string test = string.Join("|", elements.Select(x => x.Name));
+            ParallelQuery<XElement> t = elements.AsParallel().ChangeXNames("A", "AA");
+            string test = string.Join("|", t.Select(x => x.Name));
 
             // Assert
             Assert.IsTrue(elements.Count(x => x.Name == "AA") == 2);

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Xml.Linq;
 
-namespace AD.Xml 
+namespace AD.Xml
 {
     /// <summary>
     /// Extension methods to convert enumerable collections into XDocuments. 
