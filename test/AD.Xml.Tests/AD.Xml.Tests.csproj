@@ -70,18 +70,18 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="src\ModifyXNamesExtensionsTests.cs" />
-    <Compile Include="src\OrderByExtensionsTests.cs" />
-    <Compile Include="src\RemoveByExtensionsTests.cs" />
-    <Compile Include="src\ToBoolExtensionsTests.cs" />
-    <Compile Include="src\ToDateTimeExtensionsTests.cs" />
-    <Compile Include="src\ToDoubleExtensionsTests.cs" />
-    <Compile Include="src\ToLongExtensionsTests.cs" />
-    <Compile Include="src\ToXElementExensionsTests.cs" />
-    <Compile Include="src\ToXmlStringExtensionsTests.cs" />
-    <Compile Include="src\ToXNameExtensionsTests.cs" />
-    <Compile Include="src\ToXStreamingElementExtensionsTests.cs" />
-    <Compile Include="src\UnitTest1.cs" />
+    <Compile Include="ModifyXNamesExtensionsTests.cs" />
+    <Compile Include="OrderByExtensionsTests.cs" />
+    <Compile Include="RemoveByExtensionsTests.cs" />
+    <Compile Include="ToBoolExtensionsTests.cs" />
+    <Compile Include="ToDateTimeExtensionsTests.cs" />
+    <Compile Include="ToDoubleExtensionsTests.cs" />
+    <Compile Include="ToLongExtensionsTests.cs" />
+    <Compile Include="ToXElementExensionsTests.cs" />
+    <Compile Include="ToXmlStringExtensionsTests.cs" />
+    <Compile Include="ToXNameExtensionsTests.cs" />
+    <Compile Include="ToXStreamingElementExtensionsTests.cs" />
+    <Compile Include="UnitTest1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
