@@ -1,12 +1,13 @@
 ﻿using System.Xml.Linq;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using JetBrains.Annotations;
+using Xunit;
 
 namespace AD.Xml.Tests
 {
-    [TestClass]
+    [UsedImplicitly]
     public class ToXNameExtensionsTests
     {
-        [TestMethod]
+        [Fact]
         public void ToXNameTest()
         {
             // Arrange
@@ -17,7 +18,7 @@ namespace AD.Xml.Tests
             XName xName = name.ToXName(document);
 
             // Assert
-            Assert.AreEqual(name.ToLower(), xName.ToString().ToLower());
+            Assert.Equal(name.ToLower(), xName.ToString().ToLower());
         }
     }
 }

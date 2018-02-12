@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Xml.Linq;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using JetBrains.Annotations;
+using Xunit;
 
 namespace AD.Xml.Tests
 {
-    [TestClass]
+    [UsedImplicitly]
     public class ToDateTimeExtensionsTests
     {
-        [TestMethod]
+        [Fact]
         public void ToDateTimeTest0()
         {
             // Arrange
@@ -17,10 +18,10 @@ namespace AD.Xml.Tests
             DateTime? result = element.ToDateTime();
 
             // Assert
-            Assert.AreEqual(new DateTime(2017, 1, 1), result);
+            Assert.Equal(new DateTime(2017, 1, 1), result);
         }
 
-        [TestMethod]
+        [Fact]
         public void ToDateTimeTest1()
         {
             // Arrange
@@ -30,7 +31,7 @@ namespace AD.Xml.Tests
             DateTime? result = element.ToDateTime();
 
             // Assert
-            Assert.AreEqual(null, result);
+            Assert.Equal(null, result);
         }
     }
 }

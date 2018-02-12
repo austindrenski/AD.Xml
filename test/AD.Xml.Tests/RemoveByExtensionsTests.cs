@@ -2,14 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Linq;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using JetBrains.Annotations;
+using Xunit;
 
 namespace AD.Xml.Tests
 {
-    [TestClass]
+    [UsedImplicitly]
     public class RemoveByExtensionsTests
     {
-        [TestMethod]
+        [Fact]
         public void RemoveByTest()
         {
             // Arrange
@@ -28,31 +29,31 @@ namespace AD.Xml.Tests
             IEnumerable<XElement> elements = new XElement[] {element0, element1};
 
             // Act
-            elements.AsParallel().RemoveBy("B");
+            ParallelQuery<XElement> _ = elements.AsParallel().RemoveBy("B");
 
             // Assert
-            Assert.IsTrue(!elements.Elements("B").Any());
+            Assert.True(!elements.Elements("B").Any());
         }
 
-        [TestMethod]
+        [Fact]
         public void RemoveByTest1()
         {
             throw new NotImplementedException();
         }
 
-        [TestMethod]
+        [Fact]
         public void RemoveByTest2()
         {
             throw new NotImplementedException();
         }
 
-        [TestMethod]
+        [Fact]
         public void RemoveByTest3()
         {
             throw new NotImplementedException();
         }
 
-        [TestMethod]
+        [Fact]
         public void RemoveByTest4()
         {
             throw new NotImplementedException();

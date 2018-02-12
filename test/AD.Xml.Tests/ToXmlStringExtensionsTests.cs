@@ -1,13 +1,14 @@
 ﻿using System.Collections;
 using System.Xml.Linq;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using JetBrains.Annotations;
+using Xunit;
 
 namespace AD.Xml.Tests
 {
-    [TestClass]
+    [UsedImplicitly]
     public class ToXmlStringExtensionsTests
     {
-        [TestMethod]
+        [Fact]
         public void ToXmlStringTest0()
         {
             // Arrange 
@@ -22,10 +23,10 @@ namespace AD.Xml.Tests
             string result = document.ToXmlString();
 
             // Assert
-            Assert.AreEqual("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\r\n<root>\r\n  <record>\r\n    <A>a</A>\r\n    <B>b</B>\r\n  </record>\r\n</root>", result);
+            Assert.Equal("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\r\n<root>\r\n  <record>\r\n    <A>a</A>\r\n    <B>b</B>\r\n  </record>\r\n</root>", result);
         }
 
-        [TestMethod]
+        [Fact]
         public void ToXmlStringTest1()
         {
             // Arrange 
@@ -40,10 +41,10 @@ namespace AD.Xml.Tests
             string result = document.ToXmlString();
 
             // Assert
-            Assert.AreEqual("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\r\n<root>\r\n  <record>\r\n    <A>aa</A>\r\n    <B>b</B>\r\n  </record>\r\n</root>", result);
+            Assert.Equal("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\r\n<root>\r\n  <record>\r\n    <A>aa</A>\r\n    <B>b</B>\r\n  </record>\r\n</root>", result);
         }
 
-        [TestMethod]
+        [Fact]
         public void ToXmlStringTest2()
         {
             // Arrange 
@@ -57,7 +58,7 @@ namespace AD.Xml.Tests
             string result = elements.ToXmlString();
 
             // Assert
-            Assert.AreEqual("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\r\n<root>\r\n  <A>a</A>\r\n  <B>b</B>\r\n</root>", result);
+            Assert.Equal("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\r\n<root>\r\n  <A>a</A>\r\n  <B>b</B>\r\n</root>", result);
         }
 
     }

@@ -1,12 +1,13 @@
 ﻿using System.Xml.Linq;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using JetBrains.Annotations;
+using Xunit;
 
 namespace AD.Xml.Tests
 {
-    [TestClass]
+    [UsedImplicitly]
     public class ToLongExtensionsTests
     {
-        [TestMethod]
+        [Fact]
         public void ToLongTest0()
         {
             // Arrange
@@ -16,10 +17,10 @@ namespace AD.Xml.Tests
             double? result = element.ToLong();
 
             // Assert
-            Assert.AreEqual(1, result);
+            Assert.Equal(1, result);
         }
 
-        [TestMethod]
+        [Fact]
         public void ToLongTest1()
         {
             // Arrange
@@ -29,10 +30,10 @@ namespace AD.Xml.Tests
             double? result = element.ToLong();
 
             // Assert
-            Assert.AreEqual(null, result);
+            Assert.Equal(null, result);
         }
 
-        [TestMethod]
+        [Fact]
         public void ToLongTest2()
         {
             // Arrange
@@ -42,7 +43,7 @@ namespace AD.Xml.Tests
             double? result = element.ToLong();
 
             // Assert
-            Assert.AreEqual(1000, result);
+            Assert.Equal(1000, result);
         }
     }
 }

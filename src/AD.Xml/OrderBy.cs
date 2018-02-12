@@ -23,10 +23,21 @@ namespace AD.Xml
         [Pure]
         public static XDocument OrderBy(this XDocument document, [NotNull] IDictionary<XName, SortOrderType> sortOrder)
         {
+            if (document is null)
+            {
+                throw new ArgumentNullException(nameof(document));
+            }
+
+            if (sortOrder is null)
+            {
+                throw new ArgumentNullException(nameof(sortOrder));
+            }
+
             if (!sortOrder.Any())
             {
                 return document;
             }
+
             IOrderedEnumerable<XElement> orderedDocument;
             switch (sortOrder.First().Value)
             {
@@ -52,7 +63,8 @@ namespace AD.Xml
                 {
                     throw new NotImplementedException();
                 }
-            }       
+            }
+
             foreach (KeyValuePair<XName, SortOrderType> kvp in sortOrder.Skip(1))
             {
                 switch (kvp.Value)
@@ -77,6 +89,7 @@ namespace AD.Xml
                     }
                 }
             }
+
             return orderedDocument.ToXDocument();
         }
 
@@ -92,7 +105,17 @@ namespace AD.Xml
         [Pure]
         public static XDocument OrderBy([NotNull] this XDocument document, [NotNull] IEnumerable<string> sortStrings)
         {
-            IEnumerable<string> sortStringArrays = 
+            if (document is null)
+            {
+                throw new ArgumentNullException(nameof(document));
+            }
+
+            if (sortStrings is null)
+            {
+                throw new ArgumentNullException(nameof(sortStrings));
+            }
+
+            IEnumerable<string> sortStringArrays =
                 sortStrings as string[] ?? sortStrings.ToArray();
 
             if (!sortStringArrays.Any())
@@ -101,12 +124,13 @@ namespace AD.Xml
             }
 
             return document.OrderBy(
-                                    sortStringArrays.SkipWhile(string.IsNullOrEmpty)
-                                                    .Select(x => x.Contains('|') ? x : $"{x}|asc")
-                                                    .Select(x => x.Split('|'))
-                                                    .ToDictionary(x => x[0].ToXName(document), 
-                                                                  x => x[1].ToLower().StartsWith("asc") ? SortOrderType.Ascending 
-                                                                                                        : SortOrderType.Descending));
+                sortStringArrays.SkipWhile(string.IsNullOrEmpty)
+                                .Select(x => x.Contains('|') ? x : $"{x}|asc")
+                                .Select(x => x.Split('|'))
+                                .ToDictionary(x => x[0].ToXName(document),
+                                              x => x[1].ToLower().StartsWith("asc")
+                                                  ? SortOrderType.Ascending
+                                                  : SortOrderType.Descending));
         }
     }
 

@@ -2,14 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Linq;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using JetBrains.Annotations;
+using Xunit;
 
 namespace AD.Xml.Tests
 {
-    [TestClass]
+    [UsedImplicitly]
     public class OrderByExtensionsTests
     {
-        [TestMethod]
+        [Fact]
         public void OrderByTest0()
         {
             // Arrange
@@ -22,10 +23,10 @@ namespace AD.Xml.Tests
             string value = result.Root?.Elements().First().Value;
 
             // Assert
-            Assert.AreEqual("b", value);
+            Assert.Equal("b", value);
         }
 
-        [TestMethod]
+        [Fact]
         public void OrderByTest1()
         {
             // Arrange
@@ -36,10 +37,10 @@ namespace AD.Xml.Tests
             string value = result.Root?.Elements().First().Value;
 
             // Assert
-            Assert.AreEqual("b", value);
+            Assert.Equal("b", value);
         }
 
-        [TestMethod]
+        [Fact]
         public void OrderByTest2()
         {
             // Arrange
@@ -65,11 +66,11 @@ namespace AD.Xml.Tests
             string value = result.Root?.Elements().First().Elements().First().Value;
 
             // Assert
-            Assert.AreEqual("A", name);
-            Assert.AreEqual("c", value);
+            Assert.Equal("A", name);
+            Assert.Equal("c", value);
         }
 
-        [TestMethod]
+        [Fact]
         public void OrderByTest3()
         {
             // Arrange
@@ -91,11 +92,11 @@ namespace AD.Xml.Tests
             string value = result.Root?.Elements().First().Elements().First().Value;
 
             // Assert
-            Assert.AreEqual("A", name);
-            Assert.AreEqual("c", value);
+            Assert.Equal("A", name);
+            Assert.Equal("c", value);
         }
 
-        [TestMethod]
+        [Fact]
         public void OrderByTest4()
         {
             // Arrange
@@ -117,11 +118,11 @@ namespace AD.Xml.Tests
             string value = result.Root?.Elements().First().Elements().First().Value;
 
             // Assert
-            Assert.AreEqual("A", name);
-            Assert.AreEqual("a", value);
+            Assert.Equal("A", name);
+            Assert.Equal("a", value);
         }
 
-        [TestMethod]
+        [Fact]
         public void OrderByTest5()
         {
             // Arrange
@@ -138,16 +139,16 @@ namespace AD.Xml.Tests
                             new XElement("A", "c"),
                             new XElement("B", "a"))));
             // Act
-            XDocument result = document.OrderBy((List<string>) null);
+            XDocument result = document.OrderBy(new string[0]);
             string name = result.Root?.Elements().First().Elements().First().Name.ToString();
             string value = result.Root?.Elements().First().Elements().First().Value;
 
             // Assert
-            Assert.AreEqual("A", name);
-            Assert.AreEqual("a", value);
+            Assert.Equal("A", name);
+            Assert.Equal("a", value);
         }
 
-        [TestMethod]
+        [Fact]
         public void OrderByTest6()
         {
             // Arrange
@@ -173,11 +174,11 @@ namespace AD.Xml.Tests
             string value = result.Root?.Elements().First().Elements().First().Value;
 
             // Assert
-            Assert.AreEqual("A", name);
-            Assert.AreEqual("c", value);
+            Assert.Equal("A", name);
+            Assert.Equal("c", value);
         }
 
-        [TestMethod]
+        [Fact]
         public void OrderByTest7()
         {
             // Arrange
@@ -203,12 +204,11 @@ namespace AD.Xml.Tests
             string value = result.Root?.Elements().First().Elements().First().Value;
 
             // Assert
-            Assert.AreEqual("A", name);
-            Assert.AreEqual("c", value);
+            Assert.Equal("A", name);
+            Assert.Equal("c", value);
         }
 
-        [TestMethod]
-        [ExpectedException(typeof(NotImplementedException))]
+        [Fact]
         public void OrderByTest8()
         {
             // Arrange
@@ -229,17 +229,12 @@ namespace AD.Xml.Tests
             IDictionary<XName, SortOrderType> dictionary = new Dictionary<XName, SortOrderType>();
             dictionary.Add("B", SortOrderType.DoNotUse);
             dictionary.Add("A", SortOrderType.Ascending);
-            XDocument result = document.OrderBy(dictionary);
-            string name = result.Root?.Elements().First().Elements().First().Name.ToString();
-            string value = result.Root?.Elements().First().Elements().First().Value;
 
             // Assert
-            Assert.AreEqual("A", name);
-            Assert.AreEqual("c", value);
+            Assert.Throws<NotImplementedException>(() => document.OrderBy(dictionary));
         }
 
-        [TestMethod]
-        [ExpectedException(typeof(NotImplementedException))]
+        [Fact]
         public void OrderByTest9()
         {
             // Arrange
@@ -260,13 +255,9 @@ namespace AD.Xml.Tests
             IDictionary<XName, SortOrderType> dictionary = new Dictionary<XName, SortOrderType>();
             dictionary.Add("B", SortOrderType.Ascending);
             dictionary.Add("A", SortOrderType.DoNotUse);
-            XDocument result = document.OrderBy(dictionary);
-            string name = result.Root?.Elements().First().Elements().First().Name.ToString();
-            string value = result.Root?.Elements().First().Elements().First().Value;
 
             // Assert
-            Assert.AreEqual("A", name);
-            Assert.AreEqual("c", value);
+            Assert.Throws<NotImplementedException>(() => document.OrderBy(dictionary));
         }
     }
 }

@@ -1,12 +1,13 @@
 ﻿using System.Xml.Linq;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using JetBrains.Annotations;
+using Xunit;
 
 namespace AD.Xml.Tests
 {
-    [TestClass]
+    [UsedImplicitly]
     public class ToBoolExtensionsTests
     {
-        [TestMethod]
+        [Fact]
         public void ToBoolTest0()
         {
             // Arrange
@@ -16,10 +17,10 @@ namespace AD.Xml.Tests
             bool? result = element.ToBool();
 
             // Assert
-            Assert.AreEqual(false, result);
+            Assert.Equal(false, result);
         }
 
-        [TestMethod]
+        [Fact]
         public void ToBoolTest1()
         {
             // Arrange
@@ -29,10 +30,10 @@ namespace AD.Xml.Tests
             bool? result = element.ToBool();
 
             // Assert
-            Assert.AreEqual(true, result);
+            Assert.Equal(true, result);
         }
 
-        [TestMethod]
+        [Fact]
         public void ToBoolTest2()
         {
             // Arrange
@@ -42,10 +43,10 @@ namespace AD.Xml.Tests
             bool? result = element.ToBool();
 
             // Assert
-            Assert.AreEqual(null, result);
+            Assert.Equal(null, result);
         }
 
-        [TestMethod]
+        [Fact]
         public void ToBoolTest3()
         {
             // Arrange
@@ -55,10 +56,10 @@ namespace AD.Xml.Tests
             bool? result = element.ToBool();
 
             // Assert
-            Assert.AreEqual(true, result);
+            Assert.Equal(true, result);
         }
          
-        [TestMethod]
+        [Fact]
         public void ToBoolTest4()
         {
             // Arrange
@@ -68,7 +69,7 @@ namespace AD.Xml.Tests
             bool? result = element.ToBool();
 
             // Assert
-            Assert.AreEqual(false, result);
+            Assert.Equal(false, result);
         }
     }
 }

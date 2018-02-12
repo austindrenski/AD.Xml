@@ -4,14 +4,14 @@ using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Xml.Linq;
 using JetBrains.Annotations;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Xunit;
 
 namespace AD.Xml.Tests
 {
-    [TestClass]
+    [UsedImplicitly]
     public class ToXElementExensionsTests
     {
-        [TestMethod]
+        [Fact]
         public void ToXElementTest0() 
         {
             // Arrange
@@ -26,10 +26,10 @@ namespace AD.Xml.Tests
             XElement element = enumerable.ToXElement();
 
             // Assert
-            Assert.IsTrue(element.Elements().Count() == new XElement("root", enumerable).Elements().Count());
+            Assert.True(element.Elements().Count() == new XElement("root", enumerable).Elements().Count());
         }
 
-        [TestMethod]
+        [Fact]
         [SuppressMessage("ReSharper", "ExpressionIsAlwaysNull")]
         public void ToXElementTest1()
         {
@@ -40,10 +40,10 @@ namespace AD.Xml.Tests
             XElement result = element.ToXElement();
 
             // Assert
-            Assert.IsTrue(result.Value == element.Value);
+            Assert.True(result.Value == element.Value);
         }
 
-        [TestMethod]
+        [Fact]
         public void ToXElementTest2()
         {
             // Arrange
@@ -53,10 +53,10 @@ namespace AD.Xml.Tests
             XElement result = a.ToXElement();
 
             // Assert
-            Assert.IsTrue(result.Value == a.ToString());
+            Assert.True(result.Value == a.ToString());
         }
 
-        [TestMethod]
+        [Fact]
         public void ToXElementTest3()
         {
             // Arrange
@@ -71,11 +71,11 @@ namespace AD.Xml.Tests
             XElement result = elements.ToXElement();
 
             // Assert
-            Assert.IsTrue(result.Elements().Any());
+            Assert.True(result.Elements().Any());
         }
 
 
-        [TestMethod]
+        [Fact]
         public void ToXElementTest5()
         {
             // Arrange
@@ -90,7 +90,7 @@ namespace AD.Xml.Tests
             XElement result = classes.ToXElement();
 
             // Assert
-            Assert.IsTrue(result.Descendants("Hts10").Any());
+            Assert.True(result.Descendants("Hts10").Any());
         }
 
         private class TestClass

@@ -1,14 +1,15 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Linq;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using JetBrains.Annotations;
+using Xunit;
 
 namespace AD.Xml.Tests
 {
-    [TestClass]
+    [UsedImplicitly]
     public class ModifyExtensionsTests
     {
-        [TestMethod]
+        [Fact]
         public void ModifyNameTest0()
         {
             // Arrange
@@ -25,11 +26,11 @@ namespace AD.Xml.Tests
             string test = string.Join("|", t.Select(x => x.Name));
 
             // Assert
-            Assert.IsTrue(elements.Count(x => x.Name == "AA") == 1);
-            Assert.AreEqual("A|B|C|AA", test);
+            Assert.True(elements.Count(x => x.Name == "AA") == 1);
+            Assert.Equal("A|B|C|AA", test);
         }
 
-        [TestMethod]
+        [Fact]
         public void ModifyNameTest1()
         {
             // Arrange
@@ -46,8 +47,8 @@ namespace AD.Xml.Tests
             string test = string.Join("|", t.Select(x => x.Name));
 
             // Assert
-            Assert.IsTrue(elements.Count(x => x.Name == "AA") == 2);
-            Assert.AreEqual("AA|B|C|AA", test);
+            Assert.True(elements.Count(x => x.Name == "AA") == 2);
+            Assert.Equal("AA|B|C|AA", test);
         }
     }
 }

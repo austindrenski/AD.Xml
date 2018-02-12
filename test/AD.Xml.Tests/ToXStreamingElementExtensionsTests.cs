@@ -2,14 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Linq;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using JetBrains.Annotations;
+using Xunit;
 
 namespace AD.Xml.Tests
 {
-    [TestClass]
+    [UsedImplicitly]
     public class ToXStreamingElementExtensionsTests
     {
-        [TestMethod]
+        [Fact]
         public void ToXStreamingElementTest0()
         {
             // Arrange
@@ -20,10 +21,10 @@ namespace AD.Xml.Tests
             XElement result = XElement.Parse(element.ToString());
 
             // Assert
-            Assert.IsTrue(result.Elements().Count() == ((IEnumerable<int>) enumerable).Count());
+            Assert.True(result.Elements().Count() == ((IEnumerable<int>) enumerable).Count());
         }
 
-        [TestMethod]
+        [Fact]
         public void ToXStreamingElementTest1()
         {
             // Arrange
@@ -40,10 +41,10 @@ namespace AD.Xml.Tests
             XElement expected = new XElement("root", enumerable);
 
             // Assert
-            Assert.AreEqual(expected.ToString(), result.ToString());
+            Assert.Equal(expected.ToString(), result.ToString());
         }
 
-        [TestMethod]
+        [Fact]
         public void ToXStreamingElementTest2()
         {
             // Arrange
@@ -58,10 +59,10 @@ namespace AD.Xml.Tests
             XElement result = XElement.Parse(element.ToString());
 
             // Assert
-            Assert.AreEqual(elements.ToString(), result.ToString());
+            Assert.Equal(elements.ToString(), result.ToString());
         }
 
-        [TestMethod]
+        [Fact]
         public void ToXStreamingElementTest3()
         {
             // Arrange
@@ -78,7 +79,7 @@ namespace AD.Xml.Tests
             XElement result = XElement.Parse(element.ToString());
 
             // Assert
-            Assert.AreEqual(elements.ToString(), result.ToString());
+            Assert.Equal(elements.ToString(), result.ToString());
         }
     }
 }
