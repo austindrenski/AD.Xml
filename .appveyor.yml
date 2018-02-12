@@ -1,11 +1,18 @@
-before_build:
-  - cmd: nuget restore AD.Xml.sln
+dotnet_csproj:
+  patch: true
+  file: 'src/AD.Xml/AD.Xml.csproj'
+  version: '{version}'
+  package_version: '{version}'
+  assembly_version: '{version}'
+  file_version: '{version}'
+  informational_version: '{version}'
 
-configuration: 
-  - Release
-
-image: 
+image:
   - Visual Studio 2017
 
-platform: 
+platform:
   - Any CPU
+
+build_script:
+  - pwsh: dotnet build --configuration Release
+  - pwsh: dotnet test test/AD.Xml.Tests --configuration Release

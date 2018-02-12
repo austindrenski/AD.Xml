@@ -1,18 +1,5 @@
-﻿################################################################################
-# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
-################################################################################
-
-bin/
+﻿﻿bin/
 obj/
-*/bin
-*/obj
-*.DotSettings
-*.nupkg
-/nuget.exe
-*.csproj.vspscc
-*.ps1
-*.psd1
-*.psm1
+packages/
+.idea/
 *.DotSettings.user
-*.suo
-*.cache

@@ -89,7 +89,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AD.Xml\AD.Xml.csproj">
+    <ProjectReference Include="..\..\src\AD.Xml\AD.Xml.csproj">
       <Project>{5e1a8664-5a4c-4482-8501-24b8fc48f6a1}</Project>
       <Name>AD.Xml</Name>
     </ProjectReference>
