@@ -30,7 +30,7 @@ namespace AD.Xml.Tests
             double? result = element.ToLong();
 
             // Assert
-            Assert.Equal(null, result);
+            Assert.Null(result);
         }
 
         [Fact]

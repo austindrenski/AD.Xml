@@ -1,26 +1,27 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-    <PropertyGroup>
-        <langVersion>latest</langVersion>
-        <TargetFramework>netstandard2.0</TargetFramework>
-        <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-        <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
-        <PackageLicenseUrl>https://github.com/austindrenski/AD.Xml/blob/master/LICENSE</PackageLicenseUrl>
-        <Copyright>Copyright (c) 2017 austindrenski</Copyright>
-        <PackageProjectUrl>https://github.com/austindrenski/AD.Xml</PackageProjectUrl>
-        <RepositoryUrl>https://github.com/austindrenski/AD.Xml</RepositoryUrl>
-        <Description>C# extension library for XML manipulation and data management.</Description>
-        <Authors>Austin Drenski</Authors>
-        <AssemblyName>AD.Xml</AssemblyName>
-        <RootNamespace>AD.Xml</RootNamespace>
-        <AssemblyVersion>1.4</AssemblyVersion>
-        <FileVersion>1.4</FileVersion>
-        <Version>1.4</Version>
-        <PackageReleaseNotes>Targeting .NET Standard 2.0</PackageReleaseNotes>
-        <DocumentationFile>bin\Release\netstandard2.0\AD.Xml.xml</DocumentationFile>
-    </PropertyGroup>
-    <ItemGroup>
-        <PackageReference Include="JetBrains.Annotations" Version="10.4.0"/>
-        <PackageReference Include="System.Collections.Immutable" Version="1.4.0"/>
-        <PackageReference Include="System.Linq.Parallel" Version="4.3.0"/>
-    </ItemGroup>
+  <PropertyGroup>
+    <langVersion>latest</langVersion>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
+    <PackageLicenseUrl>https://github.com/austindrenski/AD.Xml/blob/master/LICENSE</PackageLicenseUrl>
+    <Copyright>Copyright (c) 2017 austindrenski</Copyright>
+    <PackageProjectUrl>https://github.com/austindrenski/AD.Xml</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/austindrenski/AD.Xml</RepositoryUrl>
+    <Description>C# extension library for XML manipulation and data management.</Description>
+    <Authors>Austin Drenski</Authors>
+    <AssemblyName>AD.Xml</AssemblyName>
+    <RootNamespace>AD.Xml</RootNamespace>
+    <AssemblyVersion>1.4</AssemblyVersion>
+    <FileVersion>1.4</FileVersion>
+    <Version>1.4</Version>
+    <PackageReleaseNotes>Targeting .NET Standard 2.0</PackageReleaseNotes>
+    <DocumentationFile>bin\Release\netstandard2.0\AD.Xml.xml</DocumentationFile>
+    <DefineConstants>JETBRAINS_ANNOTATIONS</DefineConstants>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="JetBrains.Annotations" Version="11.1.0"/>
+    <PackageReference Include="System.Collections.Immutable" Version="1.5.0"/>
+    <PackageReference Include="System.Linq.Parallel" Version="4.3.0"/>
+  </ItemGroup>
 </Project>

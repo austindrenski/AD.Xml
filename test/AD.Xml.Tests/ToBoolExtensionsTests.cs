@@ -17,7 +17,7 @@ namespace AD.Xml.Tests
             bool? result = element.ToBool();
 
             // Assert
-            Assert.Equal(false, result);
+            Assert.False(result);
         }
 
         [Fact]
@@ -30,7 +30,7 @@ namespace AD.Xml.Tests
             bool? result = element.ToBool();
 
             // Assert
-            Assert.Equal(true, result);
+            Assert.True(result);
         }
 
         [Fact]
@@ -43,7 +43,7 @@ namespace AD.Xml.Tests
             bool? result = element.ToBool();
 
             // Assert
-            Assert.Equal(null, result);
+            Assert.Null(result);
         }
 
         [Fact]
@@ -56,9 +56,9 @@ namespace AD.Xml.Tests
             bool? result = element.ToBool();
 
             // Assert
-            Assert.Equal(true, result);
+            Assert.True(result);
         }
-         
+
         [Fact]
         public void ToBoolTest4()
         {
@@ -69,7 +69,7 @@ namespace AD.Xml.Tests
             bool? result = element.ToBool();
 
             // Assert
-            Assert.Equal(false, result);
+            Assert.False(result);
         }
     }
 }

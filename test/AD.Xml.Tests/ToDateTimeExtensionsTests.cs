@@ -31,7 +31,7 @@ namespace AD.Xml.Tests
             DateTime? result = element.ToDateTime();
 
             // Assert
-            Assert.Equal(null, result);
+            Assert.Null(result);
         }
     }
 }
