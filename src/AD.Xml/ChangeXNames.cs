@@ -27,6 +27,7 @@ namespace AD.Xml
             {
                 item.Name = newName;
             }
+
             return element;
         }
 
@@ -42,10 +43,8 @@ namespace AD.Xml
         [ItemNotNull]
         [NotNull]
         [Pure]
-        public static IEnumerable<XElement> ChangeXNames([NotNull][ItemNotNull] this IEnumerable<XElement> elements, [NotNull] XName oldName, [NotNull] XName newName)
-        {
-            return elements.Select(x => x.ChangeXNames(oldName, newName));
-        }
+        public static IEnumerable<XElement> ChangeXNames([NotNull] [ItemNotNull] this IEnumerable<XElement> elements, [NotNull] XName oldName, [NotNull] XName newName)
+            => elements.Select(x => x.ChangeXNames(oldName, newName));
 
         /// <summary>
         /// Changes the name of child elements with the given name.
@@ -61,10 +60,8 @@ namespace AD.Xml
         [ItemNotNull]
         [NotNull]
         [Pure]
-        public static ParallelQuery<XElement> ChangeXNames([NotNull][ItemNotNull] this ParallelQuery<XElement> elements, [NotNull] XName oldName, [NotNull] XName newName)
-        {
-            return elements.Select(x => x.ChangeXNames(oldName, newName));
-        }
+        public static ParallelQuery<XElement> ChangeXNames([NotNull] [ItemNotNull] this ParallelQuery<XElement> elements, [NotNull] XName oldName, [NotNull] XName newName)
+            => elements.Select(x => x.ChangeXNames(oldName, newName));
 
         /// <summary>
         /// Changes the name of child elements that satisfy the predicate.
@@ -81,6 +78,7 @@ namespace AD.Xml
             {
                 item.Name = name;
             }
+
             return element;
         }
 
@@ -96,10 +94,8 @@ namespace AD.Xml
         [ItemNotNull]
         [NotNull]
         [Pure]
-        public static IEnumerable<XElement> ChangeXNames([NotNull][ItemNotNull] this IEnumerable<XElement> elements, [NotNull] Func<XElement, bool> predicate, [NotNull] XName name)
-        {
-            return elements.Select(x => x.ChangeXNames(predicate, name));
-        }
+        public static IEnumerable<XElement> ChangeXNames([NotNull] [ItemNotNull] this IEnumerable<XElement> elements, [NotNull] Func<XElement, bool> predicate, [NotNull] XName name)
+            => elements.Select(x => x.ChangeXNames(predicate, name));
 
         /// <summary>
         /// Changes the name of child elements that satisfy the predicate.
@@ -115,9 +111,7 @@ namespace AD.Xml
         [ItemNotNull]
         [NotNull]
         [Pure]
-        public static ParallelQuery<XElement> ChangeXNames([NotNull][ItemNotNull] this ParallelQuery<XElement> elements, [NotNull] Func<XElement, bool> predicate, [NotNull] XName name)
-        {
-            return elements.Select(x => x.ChangeXNames(predicate, name));
-        }
+        public static ParallelQuery<XElement> ChangeXNames([NotNull] [ItemNotNull] this ParallelQuery<XElement> elements, [NotNull] Func<XElement, bool> predicate, [NotNull] XName name)
+            => elements.Select(x => x.ChangeXNames(predicate, name));
     }
 }

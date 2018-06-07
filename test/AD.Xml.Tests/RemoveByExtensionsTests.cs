@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Linq;
 using JetBrains.Annotations;
@@ -33,30 +32,6 @@ namespace AD.Xml.Tests
 
             // Assert
             Assert.True(!elements.Elements("B").Any());
-        }
-
-        [Fact]
-        public void RemoveByTest1()
-        {
-            throw new NotImplementedException();
-        }
-
-        [Fact]
-        public void RemoveByTest2()
-        {
-            throw new NotImplementedException();
-        }
-
-        [Fact]
-        public void RemoveByTest3()
-        {
-            throw new NotImplementedException();
-        }
-
-        [Fact]
-        public void RemoveByTest4()
-        {
-            throw new NotImplementedException();
         }
     }
 }

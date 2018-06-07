@@ -15,10 +15,11 @@ namespace AD.Xml.Tests
             // Arrange
             IEnumerable<XElement> elements = new XElement[]
             {
-                new XElement("A", 0),
-                new XElement("B", 1),
-                new XElement("C", 2),
-                new XElement("A", 3)
+                new XElement("root",
+                    new XElement("A", 0),
+                    new XElement("B", 1),
+                    new XElement("C", 2),
+                    new XElement("A", 3))
             };
 
             // Act
@@ -36,10 +37,11 @@ namespace AD.Xml.Tests
             // Arrange
             IEnumerable<XElement> elements = new XElement[]
             {
-                new XElement("A", 0),
-                new XElement("B", 1),
-                new XElement("C", 2),
-                new XElement("A", 3)
+                new XElement("root",
+                    new XElement("A", 0),
+                    new XElement("B", 1),
+                    new XElement("C", 2),
+                    new XElement("A", 3))
             };
 
             // Act
