@@ -23,9 +23,11 @@ namespace AD.Xml
         [NotNull]
         public static XElement ChangeXNames([NotNull] this XElement element, [NotNull] XName oldName, [NotNull] XName newName)
         {
-            foreach (XElement item in element.Elements(oldName))
+            XElement[] children = element.Elements(oldName).ToArray();
+
+            for (int i = 0; i < children.Length; i++)
             {
-                item.Name = newName;
+                children[i].Name = newName;
             }
 
             return element;
@@ -74,9 +76,11 @@ namespace AD.Xml
         [NotNull]
         public static XElement ChangeXNames([NotNull] this XElement element, [NotNull] Func<XElement, bool> predicate, [NotNull] XName name)
         {
-            foreach (XElement item in element.Elements().Where(predicate))
+            XElement[] children = element.Elements().Where(predicate).ToArray();
+
+            for (int i = 0; i < children.Length; i++)
             {
-                item.Name = name;
+                children[i].Name = name;
             }
 
             return element;

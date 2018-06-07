@@ -13,7 +13,7 @@ namespace AD.Xml
     /// Extension methods to convert objects into XML string format.
     /// </summary>
     [PublicAPI]
-    public static class ToXmlStringExtensions 
+    public static class ToXmlStringExtensions
     {
         /// <summary>
         /// Returns the XML string representation of an XDocument.
@@ -55,10 +55,7 @@ namespace AD.Xml
         /// <param name="elements">The enumerable collection to convert.</param>
         /// <returns>The indented XML string form of the enumerable collection.</returns>
         [CanBeNull]
-        public static string ToXmlString(this IEnumerable elements)
-        {
-            return elements.ToXDocument().ToXmlString();
-        }
+        public static string ToXmlString(this IEnumerable elements) => elements.ToXDocument().ToXmlString();
 
         /// <summary>
         /// Returns the XML string representation of an immutable array.

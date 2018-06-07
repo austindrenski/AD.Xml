@@ -24,10 +24,10 @@ namespace AD.Xml.Tests
 
             // Act
             ParallelQuery<XElement> t = elements.AsParallel().ChangeXNames(x => x.Value == "3", "AA");
-            string test = string.Join("|", t.Select(x => x.Name));
+            string test = string.Join("|", t.SelectMany(x => x.Elements()).Select(x => x.Name));
 
             // Assert
-            Assert.True(elements.Count(x => x.Name == "AA") == 1);
+            Assert.True(elements.First().Elements().Count(x => x.Name == "AA") == 1);
             Assert.Equal("A|B|C|AA", test);
         }
 
@@ -46,10 +46,10 @@ namespace AD.Xml.Tests
 
             // Act
             ParallelQuery<XElement> t = elements.AsParallel().ChangeXNames("A", "AA");
-            string test = string.Join("|", t.Select(x => x.Name));
+            string test = string.Join("|", t.SelectMany(x => x.Elements()).Select(x => x.Name));
 
             // Assert
-            Assert.True(elements.Count(x => x.Name == "AA") == 2);
+            Assert.True(elements.First().Elements().Count(x => x.Name == "AA") == 2);
             Assert.Equal("AA|B|C|AA", test);
         }
     }
