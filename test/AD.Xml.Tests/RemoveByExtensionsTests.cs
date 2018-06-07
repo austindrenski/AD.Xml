@@ -25,13 +25,14 @@ namespace AD.Xml.Tests
                     new XElement("B", "b"),
                     new XElement("B", "c")
                 );
-            IEnumerable<XElement> elements = new XElement[] {element0, element1};
+            IEnumerable<XElement> elements = new XElement[] { element0, element1 };
 
             // Act
-            ParallelQuery<XElement> _ = elements.AsParallel().RemoveBy("B");
+            IEnumerable<XElement> result = elements.RemoveBy("B");
 
             // Assert
-            Assert.True(!elements.Elements("B").Any());
+            Assert.True(elements.Elements("B").Any());
+            Assert.True(!result.Elements("B").Any());
         }
     }
 }

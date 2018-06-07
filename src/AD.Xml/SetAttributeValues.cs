@@ -20,23 +20,21 @@ namespace AD.Xml
         /// <param name="value">The value to which the attributes will be set.</param>
         [Pure]
         [NotNull]
+        [LinqTunnel]
         [ItemNotNull]
         [CollectionAccess(CollectionAccessType.Read)]
-        public static IEnumerable<XElement> SetAttributeValues([NotNull] [ItemNotNull] this IEnumerable<XElement> elements, [NotNull] XName name, [CanBeNull] object value)
+        public static IEnumerable<XElement> SetAttributeValues([NotNull] [ItemCanBeNull] this IEnumerable<XElement> elements, [NotNull] XName name, [CanBeNull] object value)
         {
             if (elements is null)
-            {
                 throw new ArgumentNullException(nameof(elements));
-            }
 
             if (name is null)
-            {
                 throw new ArgumentNullException(nameof(name));
-            }
 
             foreach (XElement e in elements)
             {
-                yield return e.SetAttributeValues(name, value);
+                if (e != null)
+                    yield return e.SetAttributeValues(name, value);
             }
         }
 
