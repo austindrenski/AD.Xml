@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Xml.Linq;
 using JetBrains.Annotations;
 using Xunit;
@@ -23,7 +24,7 @@ namespace AD.Xml.Tests
             string result = document.ToXmlString();
 
             // Assert
-            Assert.Equal("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\r\n<root>\r\n  <record>\r\n    <A>a</A>\r\n    <B>b</B>\r\n  </record>\r\n</root>", result);
+            Assert.Equal($"<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>{Environment.NewLine}<root>{Environment.NewLine}  <record>{Environment.NewLine}    <A>a</A>{Environment.NewLine}    <B>b</B>{Environment.NewLine}  </record>{Environment.NewLine}</root>", result);
         }
 
         [Fact]
@@ -41,7 +42,7 @@ namespace AD.Xml.Tests
             string result = document.ToXmlString();
 
             // Assert
-            Assert.Equal("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\r\n<root>\r\n  <record>\r\n    <A>aa</A>\r\n    <B>b</B>\r\n  </record>\r\n</root>", result);
+            Assert.Equal($"<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>{Environment.NewLine}<root>{Environment.NewLine}  <record>{Environment.NewLine}    <A>aa</A>{Environment.NewLine}    <B>b</B>{Environment.NewLine}  </record>{Environment.NewLine}</root>", result);
         }
 
         [Fact]
@@ -58,8 +59,7 @@ namespace AD.Xml.Tests
             string result = elements.ToXmlString();
 
             // Assert
-            Assert.Equal("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\r\n<root>\r\n  <A>a</A>\r\n  <B>b</B>\r\n</root>", result);
+            Assert.Equal($"<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>{Environment.NewLine}<root>{Environment.NewLine}  <A>a</A>{Environment.NewLine}  <B>b</B>{Environment.NewLine}</root>", result);
         }
-
     }
 }

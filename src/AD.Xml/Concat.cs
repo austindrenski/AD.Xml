@@ -1,4 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 using JetBrains.Annotations;
 
 namespace AD.Xml
@@ -13,13 +16,27 @@ namespace AD.Xml
         /// Concatenates the strings of the enumerable optionally inserting a string separator.
         /// </summary>
         /// <param name="strings">The source enumerable.</param>
-        /// <param name="join">The string that joins the items in the enumerable.</param>
-        /// <returns>The string formed by concatenating the strings of the enumerable.</returns>
-        [CanBeNull]
+        /// <param name="delimiter">The string that joins the items in the enumerable.</param>
+        /// <returns>
+        /// The string formed by concatenating the strings of the enumerable.
+        /// </returns>
         [Pure]
-        public static string Concat([NotNull] this IEnumerable<string> strings, string join = null)
+        [NotNull]
+        public static string Concat([NotNull] this IEnumerable<string> strings, [CanBeNull] string delimiter = null)
         {
-            return string.Join(join, strings);
+            if (strings is null)
+                throw new ArgumentNullException(nameof(strings));
+
+            return strings.Aggregate(
+                new StringBuilder(),
+                (current, next) =>
+                {
+                    if (current.Length != 0 && delimiter != null)
+                        current.Append(delimiter);
+
+                    return current.Append(next);
+                },
+                result => result.ToString());
         }
     }
 }

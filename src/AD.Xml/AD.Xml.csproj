@@ -1,27 +1,29 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <langVersion>latest</langVersion>
+    <LangVersion>latest</LangVersion>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-    <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
-    <PackageLicenseUrl>https://github.com/austindrenski/AD.Xml/blob/master/LICENSE</PackageLicenseUrl>
-    <Copyright>Copyright (c) 2017 austindrenski</Copyright>
-    <PackageProjectUrl>https://github.com/austindrenski/AD.Xml</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/austindrenski/AD.Xml</RepositoryUrl>
-    <Description>C# extension library for XML manipulation and data management.</Description>
-    <Authors>Austin Drenski</Authors>
-    <AssemblyName>AD.Xml</AssemblyName>
-    <RootNamespace>AD.Xml</RootNamespace>
-    <AssemblyVersion>1.4</AssemblyVersion>
-    <FileVersion>1.4</FileVersion>
-    <Version>1.4</Version>
-    <PackageReleaseNotes>Targeting .NET Standard 2.0</PackageReleaseNotes>
-    <DocumentationFile>bin\Release\netstandard2.0\AD.Xml.xml</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup>
     <DefineConstants>JETBRAINS_ANNOTATIONS</DefineConstants>
+    <DocumentationFile>bin/Release/$(TargetFramework)/AD.Xml.xml</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyVersion />
+    <FileVersion />
+    <Version />
+  </PropertyGroup>
+  <PropertyGroup>
+    <Authors>Austin Drenski</Authors>
+    <Copyright>Copyright (c) 2017 Austin Drenski</Copyright>
+    <Description>C# extension library for XML manipulation and data management.</Description>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <PackageLicenseUrl>https://github.com/austindrenski/AD.Xml/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/austindrenski/AD.Xml</PackageProjectUrl>
+    <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
+    <RepositoryUrl>https://github.com/austindrenski/AD.Xml</RepositoryUrl>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="JetBrains.Annotations" Version="11.1.0"/>
-    <PackageReference Include="System.Collections.Immutable" Version="1.5.0"/>
-    <PackageReference Include="System.Linq.Parallel" Version="4.3.0"/>
+    <PackageReference Include="JetBrains.Annotations" Version="2018.2.1" PrivateAssets="All" />
+    <PackageReference Include="System.Linq.Parallel" Version="4.3.0" PrivateAssets="None" />
   </ItemGroup>
 </Project>

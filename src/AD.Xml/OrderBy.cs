@@ -17,52 +17,44 @@ namespace AD.Xml
         /// </summary>
         /// <param name="document">The XDocument to sort.</param>
         /// <param name="sortOrder">An IDictionary of XNames and SortOrderTypes.</param>
-        /// <returns>A sorted XDocument.</returns>
-        /// <exception cref="ArgumentNullException"/>
-        [NotNull]
+        /// <returns>
+        /// A sorted XDocument.
+        /// </returns>
+        /// <exception cref="ArgumentNullException"><paramref name="document"/></exception>
+        /// <exception cref="ArgumentNullException"><paramref name="sortOrder"/></exception>
         [Pure]
-        public static XDocument OrderBy(this XDocument document, [NotNull] IDictionary<XName, SortOrderType> sortOrder)
+        [NotNull]
+        public static XDocument OrderBy([NotNull] this XDocument document, [NotNull] IDictionary<XName, SortOrderType> sortOrder)
         {
             if (document is null)
-            {
                 throw new ArgumentNullException(nameof(document));
-            }
 
             if (sortOrder is null)
-            {
                 throw new ArgumentNullException(nameof(sortOrder));
-            }
 
             if (!sortOrder.Any())
-            {
                 return document;
-            }
 
             IOrderedEnumerable<XElement> orderedDocument;
+
             switch (sortOrder.First().Value)
             {
                 case SortOrderType.Ascending:
-                {
-                    orderedDocument = document.Root?
-                                              .Elements()
-                                              .OrderBy(x => x.Element(sortOrder.First().Key)?.Value);
+                    orderedDocument =
+                        document.Root?
+                                .Elements()
+                                .OrderBy(x => x.Element(sortOrder.First().Key)?.Value);
                     break;
-                }
+
                 case SortOrderType.Descending:
-                {
-                    orderedDocument = document.Root?
-                                              .Elements()
-                                              .OrderByDescending(x => x.Element(sortOrder.First().Key)?.Value);
+                    orderedDocument =
+                        document.Root?
+                                .Elements()
+                                .OrderByDescending(x => x.Element(sortOrder.First().Key)?.Value);
                     break;
-                }
-                case SortOrderType.DoNotUse:
-                {
-                    throw new NotImplementedException();
-                }
+
                 default:
-                {
-                    throw new NotImplementedException();
-                }
+                    throw new NotSupportedException();
             }
 
             foreach (KeyValuePair<XName, SortOrderType> kvp in sortOrder.Skip(1))
@@ -70,25 +62,20 @@ namespace AD.Xml
                 switch (kvp.Value)
                 {
                     case SortOrderType.Ascending:
-                    {
                         orderedDocument = orderedDocument?.ThenBy(x => x.Element(kvp.Key)?.Value);
-                        break;
-                    }
+                        continue;
+
                     case SortOrderType.Descending:
-                    {
                         orderedDocument = orderedDocument?.ThenByDescending(x => x.Element(kvp.Key)?.Value);
-                        break;
-                    }
-                    case SortOrderType.DoNotUse:
-                    {
-                        throw new NotImplementedException();
-                    }
+                        continue;
+
                     default:
-                    {
-                        throw new NotImplementedException();
-                    }
+                        throw new NotSupportedException();
                 }
             }
+
+            if (orderedDocument == null)
+                throw new ArgumentException();
 
             return orderedDocument.ToXDocument();
         }
@@ -98,39 +85,35 @@ namespace AD.Xml
         /// </summary>
         /// <param name="document">The XDocument to sort.</param>
         /// <param name="sortStrings">An enumerable collection of names and sort directions. E.g. "name|asc".</param>
-        /// <returns>A sorted XDocument.</returns>
-        /// <exception cref="ArgumentException"/>
-        /// <exception cref="ArgumentNullException"/>
-        [NotNull]
+        /// <returns>
+        /// A sorted XDocument.
+        /// </returns>
+        /// <exception cref="ArgumentNullException"><paramref name="document"/></exception>
+        /// <exception cref="ArgumentNullException"><paramref name="sortStrings"/></exception>
         [Pure]
+        [NotNull]
         public static XDocument OrderBy([NotNull] this XDocument document, [NotNull] IEnumerable<string> sortStrings)
         {
             if (document is null)
-            {
                 throw new ArgumentNullException(nameof(document));
-            }
 
             if (sortStrings is null)
-            {
                 throw new ArgumentNullException(nameof(sortStrings));
-            }
 
             IEnumerable<string> sortStringArrays =
                 sortStrings as string[] ?? sortStrings.ToArray();
 
             if (!sortStringArrays.Any())
-            {
                 return document;
-            }
 
             return document.OrderBy(
                 sortStringArrays.SkipWhile(string.IsNullOrEmpty)
                                 .Select(x => x.Contains('|') ? x : $"{x}|asc")
                                 .Select(x => x.Split('|'))
                                 .ToDictionary(x => x[0].ToXName(document),
-                                              x => x[1].ToLower().StartsWith("asc")
-                                                  ? SortOrderType.Ascending
-                                                  : SortOrderType.Descending));
+                                     x => x[1].ToLower().StartsWith("asc")
+                                              ? SortOrderType.Ascending
+                                              : SortOrderType.Descending));
         }
     }
 
@@ -147,11 +130,6 @@ namespace AD.Xml
         /// <summary>
         /// Sorted in descending order.
         /// </summary>
-        Descending,
-
-        /// <summary>
-        /// Not used in sort.
-        /// </summary>
-        DoNotUse
+        Descending
     }
 }

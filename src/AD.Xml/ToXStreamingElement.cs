@@ -20,12 +20,15 @@ namespace AD.Xml
         /// <param name="document">The source document to be returned as an XStreamingElement.</param>
         /// <returns>An XStreamingElement representing the source document.</returns>
         /// <exception cref="ArgumentException"/>
-        public static XStreamingElement ToXStreamingElement(this XDocument document)
+        [NotNull]
+        public static XStreamingElement ToXStreamingElement([NotNull] this XDocument document)
         {
+            if (document is null)
+                throw new ArgumentNullException(nameof(document));
+
             if (document.Root == null)
-            {
                 throw new ArgumentException("The root element of the source document cannot be null.");
-            }
+
             return new XStreamingElement(document.Root.Name, document.Root.Elements());
         }
 
@@ -34,19 +37,17 @@ namespace AD.Xml
         /// </summary>
         /// <param name="source">The <see cref="IEnumerable"/> that will become the elements of the root <see cref="XStreamingElement"/>.</param>
         /// <returns>An <see cref="XStreamingElement"/> named root that contains the source collection as an <see cref="XStreamingElement"/>.</returns>
-        public static XStreamingElement ToXStreamingElement(this IEnumerable source)
+        [NotNull]
+        public static XStreamingElement ToXStreamingElement([NotNull] this IEnumerable source)
         {
-            IEnumerable<XStreamingElement> content;
-            if (source is IEnumerable<XElement>)
-            {
-                content = source.Cast<XElement>()
-                                .Select(x => x.ToXStreamingElement());
-            }
-            else
-            {
-                content = source.Cast<object>()
-                                .Select(x => x.ToXStreamingElement());
-            }
+            if (source is null)
+                throw new ArgumentNullException(nameof(source));
+
+            IEnumerable<XStreamingElement> content =
+                source is IEnumerable<XElement>
+                    ? source.Cast<XElement>().Select(x => x.ToXStreamingElement())
+                    : source.Cast<object>().Select(x => x.ToXStreamingElement());
+
             return new XStreamingElement("root", content);
         }
 
@@ -55,20 +56,27 @@ namespace AD.Xml
         /// </summary>
         /// <param name="element">The object to be encapsulated.</param>
         /// <returns>An <see cref="XStreamingElement"/> named record that contains the element.</returns>
-        public static XStreamingElement ToXStreamingElement<T>(this T element)
+        [NotNull]
+        public static XStreamingElement ToXStreamingElement<T>([NotNull] this T element)
         {
-            if (element is XElement)
+            if (element == null)
+                throw new ArgumentNullException(nameof(element));
+
+            if (element is XElement xElement)
             {
-                XElement xElement = element as XElement;
-                return xElement.HasElements ? new XStreamingElement(xElement.Name, xElement.Elements()) 
-                                            : new XStreamingElement(xElement.Name, xElement.Value);
+                return
+                    xElement.HasElements
+                        ? new XStreamingElement(xElement.Name, xElement.Elements())
+                        : new XStreamingElement(xElement.Name, xElement.Value);
             }
+
             TypeInfo elementType = element.GetType().GetTypeInfo();
+
             if (elementType.IsPrimitive)
-            {
                 return new XStreamingElement("record", element);
-            }
+
             TypeInfo type = element.GetType().GetTypeInfo();
+
             IEnumerable<PropertyInfo> properties =
                 !type.IsInterface
                     ? type.GetProperties()
@@ -76,12 +84,15 @@ namespace AD.Xml
                                              .SelectMany(i => i.GetProperties())
                                              .ToArray();
             XStreamingElement record =
-                new XStreamingElement("record", properties.Select(x =>
-                {
-                    XElement item = new XElement(x.Name, x.GetValue(element));
-                    item.SetAttributeValue("type", x.PropertyType.Name);
-                    return item;
-                }));
+                new XStreamingElement(
+                    "record",
+                    properties.Select(x =>
+                    {
+                        XElement item = new XElement(x.Name, x.GetValue(element));
+                        item.SetAttributeValue("type", x.PropertyType.Name);
+                        return item;
+                    }));
+
             return record;
         }
     }

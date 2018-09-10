@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Xml.Linq;
+using JetBrains.Annotations;
 
 namespace AD.Xml
 {
@@ -13,10 +14,12 @@ namespace AD.Xml
         /// </summary>
         /// <param name="element">The XElement to cast.</param>
         /// <returns>The DateTime representation of the value of the XElement, or null.</returns>
-        public static DateTime? ToDateTime(this XElement element)
+        public static DateTime? ToDateTime([NotNull] this XElement element)
         {
-            DateTime result;
-            return DateTime.TryParse(element.Value, out result) ? result : new DateTime?();
+            if (element is null)
+                throw new ArgumentNullException(nameof(element));
+
+            return DateTime.TryParse(element.Value, out DateTime result) ? result : new DateTime?();
         }
     }
 }

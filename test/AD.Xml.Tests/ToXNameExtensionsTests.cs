@@ -18,7 +18,7 @@ namespace AD.Xml.Tests
             XName xName = name.ToXName(document);
 
             // Assert
-            Assert.Equal(name.ToLower(), xName.ToString().ToLower());
+            Assert.Equal(name.ToLower(), xName?.ToString().ToLower());
         }
     }
 }

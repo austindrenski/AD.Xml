@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Linq;
 using JetBrains.Annotations;
@@ -206,58 +205,6 @@ namespace AD.Xml.Tests
             // Assert
             Assert.Equal("A", name);
             Assert.Equal("c", value);
-        }
-
-        [Fact]
-        public void OrderByTest8()
-        {
-            // Arrange
-            XDocument document =
-                new XDocument(
-                    new XElement("root",
-                        new XElement("record",
-                            new XElement("A", "a"),
-                            new XElement("B", "b")),
-                        new XElement("record",
-                            new XElement("A", "b"),
-                            new XElement("B", "c")),
-                        new XElement("record",
-                            new XElement("A", "c"),
-                            new XElement("B", "a"))));
-
-            // Act
-            IDictionary<XName, SortOrderType> dictionary = new Dictionary<XName, SortOrderType>();
-            dictionary.Add("B", SortOrderType.DoNotUse);
-            dictionary.Add("A", SortOrderType.Ascending);
-
-            // Assert
-            Assert.Throws<NotImplementedException>(() => document.OrderBy(dictionary));
-        }
-
-        [Fact]
-        public void OrderByTest9()
-        {
-            // Arrange
-            XDocument document =
-                new XDocument(
-                    new XElement("root",
-                        new XElement("record",
-                            new XElement("A", "a"),
-                            new XElement("B", "b")),
-                        new XElement("record",
-                            new XElement("A", "b"),
-                            new XElement("B", "c")),
-                        new XElement("record",
-                            new XElement("A", "c"),
-                            new XElement("B", "a"))));
-
-            // Act
-            IDictionary<XName, SortOrderType> dictionary = new Dictionary<XName, SortOrderType>();
-            dictionary.Add("B", SortOrderType.Ascending);
-            dictionary.Add("A", SortOrderType.DoNotUse);
-
-            // Assert
-            Assert.Throws<NotImplementedException>(() => document.OrderBy(dictionary));
         }
     }
 }

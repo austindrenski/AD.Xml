@@ -1,6 +1,8 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Xml.Linq;
+using JetBrains.Annotations;
 
 namespace AD.Xml
 {
@@ -19,10 +21,16 @@ namespace AD.Xml
         /// </summary>
         /// <param name="elements">The enumerable collection that will be the content of the root element of the XDocument.</param>
         /// <returns>A well-formed XDocument with a root element whose children are the XElement representations of the elements in the enumerable collection.</returns>
-        public static XDocument ToXDocument(this IEnumerable elements)
+        [NotNull]
+        public static XDocument ToXDocument([NotNull] this IEnumerable elements)
         {
-            return elements is IEnumerable<XElement> ? new XDocument(XDeclarationStandard, new XElement("root", elements))
-                                                     : new XDocument(XDeclarationStandard, elements.ToXElement());
+            if (elements is null)
+                throw new ArgumentNullException(nameof(elements));
+
+            return
+                elements is IEnumerable<XElement>
+                    ? new XDocument(XDeclarationStandard, new XElement("root", elements))
+                    : new XDocument(XDeclarationStandard, elements.ToXElement());
         }
 
         /// <summary>
@@ -30,8 +38,12 @@ namespace AD.Xml
         /// </summary>
         /// <param name="document">The XDocument to check.</param>
         /// <returns>A well-formed XDocument.</returns>
-        public static XDocument ToXDocument(this XDocument document)
+        [NotNull]
+        public static XDocument ToXDocument([NotNull] this XDocument document)
         {
+            if (document is null)
+                throw new ArgumentNullException(nameof(document));
+
             document.Declaration = document.Declaration ?? XDeclarationStandard;
             return document;
         }

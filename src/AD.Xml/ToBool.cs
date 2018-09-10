@@ -1,4 +1,5 @@
-﻿using System.Xml.Linq;
+﻿using System;
+using System.Xml.Linq;
 using JetBrains.Annotations;
 
 namespace AD.Xml
@@ -14,27 +15,19 @@ namespace AD.Xml
         /// </summary>
         /// <param name="element">The XElement to convert.</param>
         /// <returns>True, false, or null.</returns>
-        public static bool? ToBool(this XElement element)
+        public static bool? ToBool([NotNull] this XElement element)
         {
-            bool result;
-            if (bool.TryParse(element.Value, out result))
-            {
+            if (element is null)
+                throw new ArgumentNullException(nameof(element));
+
+            if (bool.TryParse(element.Value, out bool result))
                 return result;
-            }
+
             switch (element.Value)
             {
-                case "0":
-                {
-                    return false;
-                }
-                case "1":
-                {
-                    return true;
-                }
-                default:
-                {
-                    return null;
-                }
+                case "0": return false;
+                case "1": return true;
+                default: return null;
             }
         }
     }

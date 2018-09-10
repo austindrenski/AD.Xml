@@ -1,19 +1,11 @@
-image:
-  - Visual Studio 2017
-  - ubuntu
+image: Visual Studio 2017
 
-platform:
-  - Any CPU
-
-branches:
-  only:
-    - master
+version: 2.0.0.{build}
 
 environment:
-  nuget:
-    secure: lAOgXBlidUDKDMFlDJInIUO7K9vZc4FHLP715QyBp1gP9KFNQjntN70Jo6gi4+bA
-
-version: 1.4.{build}
+  global:
+    DOTNET_CLI_TELEMETRY_OPTOUT: 1
+    DOTNET_SKIP_FIRST_TIME_EXPERIENCE: 1
 
 dotnet_csproj:
   patch: true
@@ -23,8 +15,16 @@ dotnet_csproj:
   assembly_version: '{version}'
 
 build_script:
-  - pwsh: dotnet build --configuration Release
-  - pwsh: dotnet test test/AD.Xml.Tests --configuration Release
+- dotnet build -c Release
+- dotnet pack -c Release
 
-on_success:
-  - pwsh: dotnet nuget push src/AD.Xml/bin/release/AD.Xml.${env:appveyor_build_version}.nupkg --source https://www.nuget.org/api/v2/package --api-key ${env:nuget}
+test_script:
+- dotnet test test\AD.Xml.Tests -c Release
+
+artifacts:
+- path: 'src\**\*.nupkg'
+
+deploy:
+- provider: NuGet
+  api_key:
+    secure: lAOgXBlidUDKDMFlDJInIUO7K9vZc4FHLP715QyBp1gP9KFNQjntN70Jo6gi4+bA

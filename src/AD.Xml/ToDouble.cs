@@ -1,4 +1,5 @@
-﻿using System.Xml.Linq;
+﻿using System;
+using System.Xml.Linq;
 using JetBrains.Annotations;
 
 namespace AD.Xml
@@ -14,10 +15,12 @@ namespace AD.Xml
         /// </summary>
         /// <param name="element">The XElement to convert.</param>
         /// <returns>A double value or null.</returns>
-        public static double? ToDouble(this XElement element)
+        public static double? ToDouble([NotNull] this XElement element)
         {
-            double result;
-            return double.TryParse(element?.Value.Replace("$", null), out result) ? result : new double?();
+            if (element is null)
+                throw new ArgumentNullException(nameof(element));
+
+            return double.TryParse(element.Value.Replace("$", null), out double result) ? result : new double?();
         }
     }
 }

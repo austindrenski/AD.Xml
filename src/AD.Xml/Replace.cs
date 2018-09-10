@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Linq;
 using JetBrains.Annotations;
@@ -19,19 +20,42 @@ namespace AD.Xml
         /// <param name="oldName">The element name for which to search.</param>
         /// <param name="name">The name of the replacement node.</param>
         /// <param name="content">The content of the replacement node.</param>
-        /// <returns>A reference to the existing <see cref="XElement"/>. This is returned for use with fluent syntax calls.</returns>
-        /// <exception cref="System.ArgumentNullException"/>
-        public static XElement Replace(this XElement element, XName oldName, XName name, object content)
+        /// <returns>
+        /// A reference to the existing <see cref="XElement"/>. This is returned for use with fluent syntax calls.
+        /// </returns>
+        /// <exception cref="System.ArgumentNullException"><paramref name="element"/></exception>
+        /// <exception cref="System.ArgumentNullException"><paramref name="oldName"/></exception>
+        /// <exception cref="System.ArgumentNullException"><paramref name="name"/></exception>
+        [NotNull]
+        public static XElement Replace(
+            [NotNull] this XElement element,
+            [NotNull] XName oldName,
+            [NotNull] XName name,
+            [CanBeNull] object content)
         {
-            IEnumerable<XElement> nodesToRemove = element.Descendants(oldName)
-                                                         .ToArray();
-            IEnumerable<XElement> parents = nodesToRemove.Select(x => x.Parent)
-                                                         .ToArray();
+            if (element is null)
+                throw new ArgumentNullException(nameof(element));
+
+            if (oldName is null)
+                throw new ArgumentNullException(nameof(oldName));
+
+            if (name is null)
+                throw new ArgumentNullException(nameof(name));
+
+            IEnumerable<XElement> nodesToRemove =
+                element.Descendants(oldName)
+                       .ToArray();
+
+            IEnumerable<XElement> parents =
+                nodesToRemove.Select(x => x.Parent)
+                             .ToArray();
+
             nodesToRemove.Remove();
             foreach (XElement item in parents)
             {
                 item.Add(new XElement(name, content));
             }
+
             return element;
         }
     }
